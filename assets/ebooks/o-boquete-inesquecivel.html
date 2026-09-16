@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>A Boca Inesquecível — Manual Aplicado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#150a1c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>/* ============================================================
+   PROTOCOLO RECONEXÃO A DOIS · Sistema Visual pt-BR
+   Bold contemporâneo · Plum profundo + Magenta vibrante + Violeta + Rosa nude
+   Bricolage Grotesque + Inter
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root{
+  /* --------- FUNDOS · plum/violeta profundo --------- */
+  --bg:         #150a1c;   /* plum absoluto */
+  --bg-1:       #1E0F2A;   /* plum principal */
+  --bg-2:       #281333;   /* plum elevado (cards) */
+  --bg-3:       #33193F;   /* plum médio (destaque) */
+  --bg-deep:    #0B0510;   /* plum abissal */
+  --bg-warm:    #2D1533;   /* plum quente */
+
+  /* --------- ROSAS / MAGENTAS --------- */
+  --magenta:      #E5478E;    /* magenta principal — vibrante */
+  --magenta-hi:   #F26AA5;    /* magenta claro */
+  --magenta-lo:   #B32E6B;    /* magenta escuro */
+  --rose-nude:    #E8B8B0;    /* rosa nude */
+  --rose-flesh:   #F0C9C1;    /* rosa pele */
+  --rose-hot:     #FF3D91;    /* rosa hot / neon suave */
+  --rose-dust:    #C99B93;    /* rosa poeira */
+
+  /* --------- VIOLETAS --------- */
+  --violet:       #7B2D8E;    /* violeta principal */
+  --violet-hi:    #A649B8;    /* violeta claro */
+  --violet-lo:    #4A1858;    /* violeta profundo */
+  --plum:         #3D1747;    /* plum saturado */
+
+  /* --------- TINTAS --------- */
+  --ink:        #FBEFEA;   /* off-white cálido */
+  --ink-dim:    #DCC6C8;   /* rosa off-white */
+  --ink-mute:   #A48891;   /* rosa mudo */
+  --ink-soft:   #7D5D68;   /* rosa muito mudo */
+
+  /* --------- METAIS --------- */
+  --gold:       #E4B871;   /* champagne */
+  --gold-hi:    #F5D090;   /* champagne alto */
+  --gold-lo:    #B08A50;   /* champagne baixo */
+  --rose-gold:  #E9A891;   /* rose gold */
+
+  /* --------- LINHAS --------- */
+  --line:       #3A1D46;
+  --line-2:     #4D2857;
+  --line-3:     #663672;
+
+  /* --------- ESCALA --------- */
+  --scale-lo:   var(--magenta-lo);
+  --scale-md:   var(--gold);
+  --scale-hi:   var(--rose-hot);
+
+  /* --------- SOMBRAS --------- */
+  --shadow-page: 0 40px 100px rgba(11,5,16,.7), 0 0 0 1px rgba(229,71,142,.12);
+  --shadow-card: 0 4px 20px rgba(11,5,16,.4);
+  --shadow-glow: 0 0 60px rgba(229,71,142,.15);
+
+  /* --------- RADII --------- */
+  --r-sq: 2px;
+  --r-card: 3px;
+  --r-pill: 999px;
+
+  /* --------- FONTES --------- */
+  --f-display: 'Bricolage Grotesque', 'Georgia', serif;
+  --f-sans:    'Inter', -apple-system, sans-serif;
+  --f-mono:    'JetBrains Mono', 'Menlo', monospace;
+
+  /* Gradientes marca */
+  --g-hot:     linear-gradient(135deg, #E5478E 0%, #7B2D8E 60%, #3D1747 100%);
+  --g-warm:    linear-gradient(180deg, #FF3D91 0%, #E5478E 40%, #7B2D8E 100%);
+  --g-plum:    linear-gradient(180deg, #281333 0%, #1E0F2A 60%, #150A1C 100%);
+  --g-rose:    linear-gradient(160deg, #F0C9C1 0%, #E8B8B0 40%, #C99B93 100%);
+  --g-cover:   radial-gradient(ellipse at 30% 20%, #7B2D8E 0%, #3D1747 40%, #1E0F2A 100%);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{ scroll-behavior: smooth; }
+body{
+  font-family: var(--f-sans);
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding: 40px 0 100px;
+  overflow-x: hidden;
+}
+
+/* Fundo do body — plum textura */
+body::before{
+  content:'';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(123,45,142,.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(229,71,142,.15) 0%, transparent 50%),
+    radial-gradient(ellipse at center, #1E0F2A 0%, #0B0510 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --------- BOOK LAYOUT --------- */
+
+.book{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.page{
+  width: 900px;
+  min-height: 1200px;
+  margin: 0 auto 40px;
+  padding: 80px 90px;
+  background: var(--bg-1);
+  color: var(--ink);
+  position: relative;
+  box-shadow: var(--shadow-page);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+/* Grão texturizado + halo rosa */
+.page::before{
+  content:'';
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(229,71,142,.06) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(123,45,142,.08) 0%, transparent 40%),
+    radial-gradient(rgba(255,255,255,.014) 1px, transparent 1px) 0 0 / 4px 4px;
+  mix-blend-mode: screen;
+  opacity: .8;
+}
+.page > *{ position: relative; z-index: 1; }
+
+/* Variantes de página */
+.page.deep{
+  background: var(--bg-deep);
+}
+.page.warm{
+  background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+}
+.page.rose{
+  background: linear-gradient(180deg, #3D1747 0%, #2D1533 100%);
+}
+.page.rose::before{
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,61,145,.12) 0%, transparent 50%),
+    radial-gradient(rgba(240,201,193,.02) 1px, transparent 1px) 0 0 / 4px 4px;
+}
+.page.hot{
+  background: linear-gradient(160deg, #4D1D5D 0%, #2D1533 60%, #1E0F2A 100%);
+}
+.page.hot::before{
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,61,145,.18) 0%, transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba(229,71,142,.15) 0%, transparent 45%),
+    radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px) 0 0 / 4px 4px;
+}
+
+/* Numeração inferior */
+.pnum{
+  position:absolute;
+  bottom: 40px; left: 90px; right: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.pnum .rule{
+  flex:1; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(228,184,113,.35), transparent);
+}
+.pnum .num{ min-width: 20px; text-align: right; color: var(--gold); }
+
+/* Eyebrow */
+.eyebrow{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--gold-lo);
+  border-radius: var(--r-sq);
+  background: rgba(228,184,113,.06);
+}
+.eyebrow.solid{
+  background: var(--magenta);
+  color: var(--bg);
+  border-color: var(--magenta);
+}
+.eyebrow.hot{
+  background: var(--rose-hot);
+  color: var(--bg);
+  border-color: var(--rose-hot);
+}
+
+/* --------- TIPOGRAFIA --------- */
+
+.h-hero{
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 92px;
+  line-height: .98;
+  letter-spacing: -.035em;
+  color: var(--ink);
+  margin: 0;
+  font-variation-settings: "opsz" 96;
+}
+.h-display{
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 62px;
+  line-height: 1.02;
+  letter-spacing: -.03em;
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-variation-settings: "opsz" 72;
+}
+.h-title{
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.08;
+  margin: 0 0 12px;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 48;
+}
+.h-chapter{
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1.12;
+  margin: 0 0 8px;
+  color: var(--ink);
+  letter-spacing: -.02em;
+}
+.h-section{
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.18;
+  margin: 0 0 10px;
+  color: var(--magenta-hi);
+  letter-spacing: -.015em;
+}
+.h-label{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--magenta-hi);
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+.h-label.gold{ color: var(--gold); }
+.h-label.rose{ color: var(--rose-nude); }
+.h-label.ink{ color: var(--ink-mute); }
+
+.italic{
+  font-family: var(--f-display);
+  font-style: italic;
+  color: var(--rose-hot);
+  font-weight: 400;
+  font-variation-settings: "opsz" 48;
+}
+.hot-text{ color: var(--rose-hot); }
+.magenta-text{ color: var(--magenta); }
+.gold-text{ color: var(--gold); }
+.rose-text{ color: var(--rose-nude); }
+
+/* Texto com gradiente */
+.grad-text{
+  background: linear-gradient(135deg, #FF3D91 0%, #E5478E 50%, #A649B8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.body{
+  font-family: var(--f-sans);
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: var(--ink-dim);
+  margin: 0 0 14px;
+  font-weight: 400;
+  letter-spacing: -.005em;
+}
+.body.lg{ font-size: 17px; line-height: 1.72; }
+.body.sm{ font-size: 13.5px; line-height: 1.65; }
+.body strong{ color: var(--ink); font-weight: 600; }
+.body em{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 1.08em;
+  color: var(--rose-hot);
+  font-weight: 400;
+}
+
+.lead{
+  font-family: var(--f-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--rose-nude);
+  margin: 0 0 20px;
+  font-style: italic;
+  letter-spacing: -.015em;
+  font-variation-settings: "opsz" 32;
+}
+
+.tag{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--magenta-hi);
+}
+
+/* --------- ORNAMENTOS --------- */
+
+.rule-orn{
+  position: relative;
+  height: 20px;
+  margin: 32px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+}
+.rule-orn::before,
+.rule-orn::after{
+  content:'';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--magenta) 50%, transparent);
+}
+.rule-orn .diamond{
+  width: 8px; height: 8px;
+  background: var(--magenta);
+  transform: rotate(45deg);
+  margin: 0 14px;
+  box-shadow: 0 0 0 1px var(--rose-hot), 0 0 12px rgba(255,61,145,.4);
+}
+.rule-orn.gold::before, .rule-orn.gold::after{
+  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+}
+.rule-orn.gold .diamond{
+  background: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold-hi);
+}
+
+.divider{
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-2) 50%, transparent);
+  margin: 32px 0;
+  border: 0;
+}
+
+/* Cantos decorativos */
+.corner{
+  position:absolute;
+  width: 20px; height: 20px;
+}
+.corner::before, .corner::after{
+  content:'';
+  position:absolute;
+  background: var(--gold);
+  opacity: .6;
+}
+.corner.tl{ top: 30px; left: 30px; }
+.corner.tl::before{ top:0; left:0; width:20px; height:1px;}
+.corner.tl::after{  top:0; left:0; width:1px; height:20px;}
+.corner.tr{ top: 30px; right: 30px; }
+.corner.tr::before{ top:0; right:0; width:20px; height:1px;}
+.corner.tr::after{  top:0; right:0; width:1px; height:20px;}
+.corner.bl{ bottom: 70px; left: 30px; }
+.corner.bl::before{ bottom:0; left:0; width:20px; height:1px;}
+.corner.bl::after{  bottom:0; left:0; width:1px; height:20px;}
+.corner.br{ bottom: 70px; right: 30px; }
+.corner.br::before{ bottom:0; right:0; width:20px; height:1px;}
+.corner.br::after{  bottom:0; right:0; width:1px; height:20px;}
+
+/* --------- CARDS --------- */
+
+.card{
+  background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-card);
+  padding: 24px 28px;
+  margin: 0 0 16px;
+  position: relative;
+}
+.card.gold{ border-color: var(--gold-lo); background: linear-gradient(180deg, rgba(228,184,113,.06), rgba(228,184,113,.02)); }
+.card.magenta{
+  background: linear-gradient(180deg, rgba(229,71,142,.12), rgba(123,45,142,.08));
+  border-color: var(--magenta-lo);
+}
+.card.hot{
+  background: linear-gradient(135deg, rgba(255,61,145,.15), rgba(123,45,142,.2));
+  border-color: var(--magenta);
+  color: var(--ink);
+}
+.card.hot .h-section{ color: var(--rose-hot); }
+
+.card.dark{
+  background: var(--bg-deep);
+  border-color: var(--line);
+}
+
+/* --------- TIEMPO CARDS (3/7/15) --------- */
+
+.times{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 12px 0 16px;
+}
+
+.time-block{
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-card);
+  padding: 20px 24px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.time-block .t-num{
+  font-family: var(--f-display);
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--rose-nude);
+  font-variation-settings: "opsz" 48;
+  letter-spacing: -.03em;
+}
+.time-block .t-num .u{
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display: block;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.time-block.mid{
+  border-color: var(--magenta-lo);
+  background: linear-gradient(180deg, rgba(229,71,142,.08), var(--bg-1));
+}
+.time-block.mid .t-num{ color: var(--magenta-hi); }
+.time-block.full{
+  border-color: var(--rose-hot);
+  background: linear-gradient(135deg, rgba(255,61,145,.15), rgba(123,45,142,.18));
+  box-shadow: 0 0 40px rgba(255,61,145,.1);
+}
+.time-block.full .t-num{ color: var(--rose-hot); }
+.time-block .t-body{
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: var(--ink-dim);
+  font-family: var(--f-sans);
+}
+
+/* --------- SCRIPT LINE --------- */
+
+.script{
+  border-left: 3px solid var(--magenta);
+  padding: 12px 20px 12px 24px;
+  margin: 12px 0;
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--rose-hot);
+  background: linear-gradient(90deg, rgba(229,71,142,.1), transparent);
+  letter-spacing: -.015em;
+  font-variation-settings: "opsz" 32;
+  font-weight: 400;
+}
+.script.gold{ border-left-color: var(--gold); background: linear-gradient(90deg, rgba(228,184,113,.1), transparent); color: var(--gold-hi); }
+
+.callout{
+  padding: 18px 22px;
+  background: rgba(228,184,113,.05);
+  border: 1px solid var(--gold-lo);
+  border-radius: var(--r-card);
+  margin: 16px 0;
+}
+.callout.warn{
+  background: rgba(229,71,142,.08);
+  border-color: var(--magenta-lo);
+}
+.callout.hot{
+  background: linear-gradient(135deg, rgba(255,61,145,.1), rgba(123,45,142,.1));
+  border-color: var(--magenta);
+}
+.callout .h-label{ margin-bottom: 8px; }
+
+/* --------- QUESTION LIST --------- */
+
+.qlist{
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+.qlist li{
+  padding: 14px 0 14px 24px;
+  border-bottom: 1px dashed var(--line-2);
+  position: relative;
+  font-family: var(--f-sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+.qlist li:last-child{ border-bottom: 0; }
+.qlist li::before{
+  content:'';
+  position: absolute;
+  left: 0; top: 21px;
+  width: 8px; height: 8px;
+  border: 1px solid var(--magenta);
+  transform: rotate(45deg);
+}
+
+/* --------- CHECKBOX --------- */
+
+.check{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-family: var(--f-sans);
+  font-size: 14.5px;
+  color: var(--ink-dim);
+  user-select: none;
+  transition: color .18s;
+}
+.check .box{
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--gold);
+  border-radius: 2px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all .18s;
+}
+.check .box::after{
+  content:'';
+  width: 10px; height: 6px;
+  border-left: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: rotate(-45deg) translateY(-2px);
+  opacity: 0;
+  transition: opacity .18s;
+}
+.check.on .box{
+  background: var(--magenta);
+  border-color: var(--magenta);
+  box-shadow: 0 0 12px rgba(229,71,142,.4);
+}
+.check.on .box::after{ opacity: 1; }
+.check.on{ color: var(--ink); }
+
+/* --------- STARS --------- */
+
+.stars{
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.stars .st{
+  width: 22px; height: 22px;
+  cursor: pointer;
+  color: var(--line-3);
+  transition: color .12s;
+}
+.stars .st.on{ color: var(--rose-hot); filter: drop-shadow(0 0 4px rgba(255,61,145,.4)); }
+.stars:hover .st{ color: var(--magenta-hi); }
+.stars .st:hover ~ .st{ color: var(--line-3); }
+
+/* Scale 1-5 */
+.scale{
+  display: flex;
+  gap: 8px;
+  margin: 6px 0;
+}
+.scale .s{
+  width: 46px; height: 46px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sq);
+  background: var(--bg-2);
+  font-family: var(--f-display);
+  font-size: 22px;
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: all .18s;
+  font-style: italic;
+  font-weight: 500;
+}
+.scale .s:hover{ border-color: var(--magenta-hi); color: var(--magenta-hi); }
+.scale .s.on{
+  background: var(--magenta);
+  color: var(--ink);
+  border-color: var(--magenta);
+  box-shadow: 0 0 20px rgba(229,71,142,.3);
+}
+
+/* --------- GRID --------- */
+
+.grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.grid-7{ display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; }
+
+.pillar{
+  padding: 28px;
+  background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-card);
+  text-align: center;
+}
+.pillar .num{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 56px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 72;
+}
+.pillar .name{
+  font-family: var(--f-display);
+  font-size: 28px;
+  color: var(--rose-hot);
+  margin: 0 0 8px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+.pillar .desc{
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+/* --------- DAY CELL --------- */
+
+.day-cell{
+  aspect-ratio: 1/1.15;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sq);
+  background: var(--bg-2);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all .18s;
+  position: relative;
+}
+.day-cell:hover{ border-color: var(--magenta); }
+.day-cell.on{
+  background: linear-gradient(135deg, rgba(255,61,145,.25), rgba(123,45,142,.25));
+  border-color: var(--rose-hot);
+}
+.day-cell .d-num{ font-family: var(--f-mono); font-size: 10px; color: var(--gold); }
+.day-cell .d-name{ font-family: var(--f-display); font-size: 13px; font-style: italic; color: var(--rose-nude); }
+
+/* --------- STAMP --------- */
+
+.stamp{
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  border-radius: var(--r-sq);
+}
+.stamp.magenta{ border-color: var(--magenta); color: var(--magenta); }
+.stamp.filled{ background: var(--magenta); color: var(--ink); border-color: var(--magenta); }
+.stamp.hot{
+  background: var(--rose-hot);
+  color: var(--bg);
+  border-color: var(--rose-hot);
+  box-shadow: 0 0 24px rgba(255,61,145,.3);
+}
+
+/* --------- NAV BAR --------- */
+
+.navbar{
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(11,5,16,.88);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(229,71,142,.3);
+  border-radius: var(--r-pill);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 100;
+  box-shadow: 0 10px 40px rgba(11,5,16,.5), 0 0 40px rgba(229,71,142,.15);
+  font-family: var(--f-mono);
+}
+.navbar button, .navbar a{
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: all .18s;
+  text-decoration: none;
+}
+.navbar button:hover, .navbar a:hover{
+  background: rgba(229,71,142,.15);
+  color: var(--rose-hot);
+}
+.navbar .pos{
+  color: var(--rose-hot);
+  padding: 8px 12px;
+  min-width: 60px;
+  text-align: center;
+}
+.navbar .sep{
+  width: 1px; height: 18px;
+  background: rgba(229,71,142,.25);
+}
+
+.toc-btn{
+  background: rgba(229,71,142,.12);
+  border-radius: 50%;
+  padding: 0;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+}
+.toc-btn svg{ width: 16px; height: 16px; }
+
+/* --------- TOC PANEL --------- */
+
+.toc-panel{
+  position: fixed;
+  top: 0; left: 0;
+  width: 340px;
+  height: 100vh;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+  border-right: 1px solid var(--line-2);
+  padding: 40px 24px;
+  z-index: 200;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  box-shadow: 20px 0 60px rgba(11,5,16,.4);
+}
+.toc-panel.open{ transform: translateX(0); }
+.toc-panel .toc-title{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 20px;
+}
+.toc-panel h4{
+  font-family: var(--f-display);
+  font-size: 16px;
+  color: var(--rose-hot);
+  font-style: italic;
+  margin: 24px 0 8px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+.toc-panel a{
+  display: block;
+  padding: 7px 0;
+  font-family: var(--f-sans);
+  font-size: 13.5px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color .12s;
+  border-bottom: 1px dashed transparent;
+}
+.toc-panel a:hover{ color: var(--rose-hot); border-bottom-color: var(--magenta); }
+.toc-panel a .n{
+  display: inline-block;
+  width: 30px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+.toc-panel .close{
+  position: absolute;
+  top: 20px; right: 20px;
+  background: transparent;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  cursor: pointer;
+  color: var(--ink-mute);
+  font-size: 18px;
+}
+
+.toc-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(11,5,16,.7);
+  backdrop-filter: blur(4px);
+  z-index: 199;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.toc-backdrop.on{ opacity: 1; pointer-events: auto; }
+
+/* --------- FLOURISH --------- */
+
+.mono-num{
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.roman{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--rose-hot);
+  letter-spacing: -.02em;
+}
+
+/* Bloco "antes de dormir" */
+.night-block{
+  margin-top: 22px;
+  padding: 22px 26px;
+  background: linear-gradient(135deg, rgba(123,45,142,.15), rgba(61,23,71,.2));
+  border-radius: var(--r-card);
+  border: 1px solid var(--line-2);
+}
+.night-block .h-label{ color: var(--rose-hot); }
+
+/* Frase-âncora */
+.anchor{
+  padding: 28px 32px;
+  border: 1px solid var(--magenta);
+  border-radius: var(--r-card);
+  background: linear-gradient(135deg, rgba(255,61,145,.08), rgba(123,45,142,.12));
+  text-align: center;
+  margin: 22px 0;
+  position: relative;
+}
+.anchor::before, .anchor::after{
+  content:'';
+  position: absolute;
+  width: 40px; height: 1px;
+  background: var(--gold);
+  top: 50%;
+}
+.anchor::before{ left: -20px; }
+.anchor::after{ right: -20px; }
+.anchor .txt{
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  font-variation-settings: "opsz" 48;
+}
+
+/* --------- COVER --------- */
+.cover{
+  background: var(--g-cover);
+  color: var(--ink);
+  padding: 100px 60px;
+  min-height: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  text-align: center;
+  position: relative;
+}
+.cover::before{
+  content:'';
+  position: absolute; inset:0;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(255,61,145,.2) 0%, transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(228,184,113,.12) 0%, transparent 50%),
+    radial-gradient(rgba(255,255,255,.015) 1px, transparent 1px) 0 0 / 6px 6px;
+  pointer-events: none;
+}
+.cover > *{ position: relative; z-index: 1; }
+.cover .frame{
+  position: absolute;
+  top: 40px; left: 40px; right: 40px; bottom: 40px;
+  border: 1px solid rgba(228,184,113,.4);
+  pointer-events: none;
+}
+.cover .frame::before,
+.cover .frame::after{
+  content:'';
+  position: absolute;
+  width: 32px; height: 32px;
+  border: 1px solid var(--gold-hi);
+}
+.cover .frame::before{ top: -6px; left: -6px; border-right: 0; border-bottom: 0; }
+.cover .frame::after{ bottom: -6px; right: -6px; border-left: 0; border-top: 0; }
+
+/* --------- CHECK-IN --------- */
+
+.checkin .q{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px dashed var(--line-2);
+}
+.checkin .q:last-child{ border-bottom: 0; }
+.checkin .q-text{
+  font-family: var(--f-display);
+  font-size: 20px;
+  color: var(--rose-nude);
+  font-style: italic;
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  font-variation-settings: "opsz" 32;
+}
+
+/* --------- COMPARE --------- */
+
+.compare-row{
+  display: grid;
+  grid-template-columns: 1fr 60px 60px 44px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line-2);
+}
+.compare-row .label{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--rose-nude);
+  letter-spacing: -.01em;
+}
+.compare-row .val{
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--ink-mute);
+  padding: 6px 0;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sq);
+  background: var(--bg-2);
+}
+.compare-row .val.now{
+  color: var(--rose-hot);
+  border-color: var(--magenta);
+  background: rgba(255,61,145,.12);
+  font-weight: 500;
+}
+.compare-row .delta{
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  color: var(--rose-hot);
+  font-weight: 500;
+}
+.compare-row .delta.neg{ color: var(--magenta-lo); }
+.compare-row .delta.zero{ color: var(--ink-mute); }
+
+/* --------- FIELDS --------- */
+
+.field{
+  width: 100%;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sq);
+  padding: 10px 14px;
+  font-family: var(--f-sans);
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--bg-2);
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.5;
+  transition: border-color .18s, box-shadow .18s;
+}
+.field::placeholder{ color: var(--ink-soft); }
+.field:focus{
+  outline: 0;
+  border-color: var(--magenta);
+  box-shadow: 0 0 0 3px rgba(229,71,142,.15);
+}
+.field.mini{ min-height: 36px; }
+
+/* --------- TRACKER TABLE --------- */
+
+.tracker-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-family: var(--f-sans);
+  font-size: 13px;
+}
+.tracker-table th{
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--gold-lo);
+}
+.tracker-table td{
+  padding: 10px 8px;
+  border-bottom: 1px dashed var(--line-2);
+  vertical-align: middle;
+  color: var(--ink-dim);
+}
+.tracker-table tr:hover td{ background: rgba(229,71,142,.03); }
+.tracker-table .d-num{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--rose-hot);
+  width: 40px;
+  font-weight: 500;
+}
+.tracker-table .d-name{
+  font-family: var(--f-display);
+  font-style: italic;
+  color: var(--ink);
+  font-size: 16px;
+  letter-spacing: -.01em;
+}
+
+/* --------- PLANNER --------- */
+
+.planner-day{
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-card);
+  padding: 16px 22px;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+.planner-day .p-num{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 34px;
+  color: var(--gold);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+.planner-day .p-name{
+  font-family: var(--f-display);
+  font-size: 18px;
+  color: var(--rose-hot);
+  margin: 0 0 4px;
+  font-weight: 500;
+  letter-spacing: -.015em;
+}
+.planner-day .p-hint{
+  font-size: 12.5px;
+  color: var(--ink-mute);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --------- MATERIAL OPENER --------- */
+
+.material-opener{
+  min-height: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 90px;
+  background: linear-gradient(160deg, #4D1D5D 0%, #2D1533 60%, #1E0F2A 100%);
+  position: relative;
+}
+.material-opener::before{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,61,145,.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(228,184,113,.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.material-opener > *{ position: relative; z-index: 1; }
+.material-opener .m-num{
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 96px;
+  color: var(--gold-hi);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  font-variation-settings: "opsz" 96;
+}
+
+/* --------- CHIPS --------- */
+
+.chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.chip{
+  padding: 6px 14px;
+  background: rgba(228,184,113,.08);
+  border: 1px solid var(--gold-lo);
+  border-radius: var(--r-pill);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-hi);
+}
+.chip.magenta{ background: var(--magenta); color: var(--ink); border-color: var(--magenta); }
+.chip.hot{ background: var(--rose-hot); color: var(--bg); border-color: var(--rose-hot); box-shadow: 0 0 16px rgba(255,61,145,.3); }
+
+/* --------- PRINT --------- */
+@media print{
+  body{ background: white; padding: 0; }
+  .page{ page-break-after: always; box-shadow: none; margin: 0; border-radius: 0; }
+  .navbar, .toc-panel, .toc-backdrop{ display: none !important; }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+@media (max-width: 940px){
+  html, body{ overflow-x: hidden; }
+  body{ padding: 12px 0 90px; }
+  .book{ padding: 0 8px; }
+
+  .page{
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    padding: 44px 22px 80px;
+    margin: 0 0 16px;
+    border-radius: 3px;
+    box-shadow: 0 8px 24px rgba(11,5,16,.4), 0 0 0 1px rgba(229,71,142,.1);
+  }
+
+  .page.cover, .page.material-opener, .material-opener{
+    min-height: 88vh;
+    padding: 60px 16px 60px;
+  }
+  .cover .frame{ top: 16px; left: 16px; right: 16px; bottom: 16px; }
+  .cover h1, .material-opener h2, .material-opener h3{ max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; }
+
+  .h-hero{ font-size: 48px; line-height: 1.02; }
+  .h-display{ font-size: 38px; line-height: 1.05; }
+  .h-title{ font-size: 28px; }
+  .h-chapter{ font-size: 24px; }
+  .h-section{ font-size: 20px; }
+  .lead{ font-size: 18px; line-height: 1.4; }
+  .body{ font-size: 15px; line-height: 1.65; }
+  .body.lg{ font-size: 15.5px; }
+  .anchor .txt{ font-size: 19px; }
+  .anchor{ padding: 20px 22px; }
+  .anchor::before, .anchor::after{ display: none; }
+  .script{ font-size: 18px; padding: 8px 14px 8px 18px; }
+  .cover h1{ font-size: 44px !important; line-height: 1 !important; letter-spacing: -.025em !important; padding: 0 !important; }
+  .cover h1 em{ display: inline-block; padding: 0 6px; }
+
+  .roman{ font-size: 32px !important; }
+  .m-num{ font-size: 62px !important; }
+
+  .pnum{
+    bottom: 20px; left: 22px; right: 22px;
+    font-size: 9px; letter-spacing: .2em;
+    gap: 10px;
+  }
+  .pnum .mono-num{ max-width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .times{ gap: 10px; }
+  .time-block{
+    grid-template-columns: 76px 1fr;
+    gap: 14px;
+    padding: 14px 16px;
+  }
+  .time-block .t-num{ font-size: 36px; }
+  .time-block .t-num .u{ font-size: 9px; letter-spacing: .22em; }
+  .time-block .t-body{ font-size: 13.5px; line-height: 1.55; }
+
+  .grid-2, .grid-3{ grid-template-columns: 1fr; }
+
+  .planner-day{
+    grid-template-columns: 46px 1fr;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .planner-day > select{ grid-column: 1 / -1; width: 100% !important; }
+  .planner-day .p-num{ font-size: 26px; }
+  .planner-day .p-name{ font-size: 16px; }
+  .planner-day .p-hint{ font-size: 12px; }
+
+  .card{ padding: 18px 20px; }
+  .callout{ padding: 14px 18px; }
+  .night-block{ padding: 18px 20px; }
+
+  .checkin .q{
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px 0;
+  }
+  .checkin .q-text{ font-size: 17px; }
+
+  .scale{ gap: 6px; }
+  .scale .s{ width: 44px; height: 44px; font-size: 20px; flex: 1; }
+
+  .compare-row{
+    grid-template-columns: 1fr 44px 44px 36px;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .compare-row .label{ font-size: 14px; }
+  .compare-row .val{ font-size: 12px; padding: 4px 0; }
+
+  .tracker-table{ font-size: 12px; table-layout: fixed; }
+  .tracker-table th{ font-size: 8.5px; letter-spacing: .14em; padding: 6px 4px; }
+  .tracker-table td{ padding: 6px 4px; }
+  .tracker-table .d-num{ font-size: 18px; width: 26px; }
+  .tracker-table .d-name{ font-size: 13px; line-height: 1.25; }
+  .tracker-table .stars .st{ width: 14px; height: 14px; }
+  .tracker-table .field.mini{ font-size: 12px; padding: 4px 6px; }
+
+  .corner.tl{ top: 16px; left: 16px; }
+  .corner.tr{ top: 16px; right: 16px; }
+  .corner.bl{ bottom: 40px; left: 16px; }
+  .corner.br{ bottom: 40px; right: 16px; }
+
+  .navbar{
+    bottom: 12px;
+    padding: 6px 8px;
+    gap: 4px;
+    max-width: calc(100vw - 24px);
+  }
+  .navbar button, .navbar a{
+    padding: 8px 10px;
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+  .navbar .pos{ padding: 8px 6px; font-size: 10px; min-width: 46px; }
+  .toc-btn{ width: 30px; height: 30px; }
+
+  .toc-panel{
+    width: 88vw;
+    max-width: 340px;
+    padding: 30px 20px;
+  }
+  .toc-panel a{ font-size: 14px; padding: 8px 0; }
+
+  .rule-orn{ margin: 22px auto; }
+
+  .chips{ gap: 6px; }
+  .chip{ padding: 4px 10px; font-size: 9px; letter-spacing: .16em; }
+}
+
+@media (max-width: 480px){
+  .page{ padding: 36px 18px 70px; }
+  .h-display{ font-size: 32px; }
+  .h-hero{ font-size: 40px; }
+  .cover h1{ font-size: 36px !important; letter-spacing: -.02em !important; }
+  .lead{ font-size: 17px; }
+  .body, .body.lg{ font-size: 14.5px; }
+  .anchor .txt{ font-size: 18px; }
+  .time-block{ grid-template-columns: 62px 1fr; gap: 12px; padding: 12px 14px; }
+  .time-block .t-num{ font-size: 30px; }
+  .scale .s{ width: 36px; height: 36px; font-size: 17px; }
+  .compare-row{ grid-template-columns: 1fr 40px 40px 32px; gap: 6px; }
+  .navbar button, .navbar a{ padding: 7px 8px; font-size: 9.5px; }
+  .navbar .pos{ min-width: 42px; font-size: 9.5px; }
+  .checkin .q-text{ font-size: 16px; }
+}
+</style>
+<div id="__splash" style="position:fixed;inset:0;background:#150a1c;display:flex;align-items:center;justify-content:center;z-index:2147483647;transition:opacity .25s ease">
+  <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="bg" cx="30%" cy="20%" r="80%">
+        <stop offset="0%" stop-color="#7B2D8E"/>
+        <stop offset="60%" stop-color="#3D1747"/>
+        <stop offset="100%" stop-color="#1E0F2A"/>
+      </radialGradient>
+    </defs>
+    <rect width="400" height="600" fill="url(#bg)"/>
+    <rect x="30" y="30" width="340" height="540" fill="none" stroke="#E4B871" stroke-width="1" opacity="0.5"/>
+    <path d="M 160 240 Q 200 220 240 240 Q 220 265 200 265 Q 180 265 160 240 Z" fill="none" stroke="#FF3D91" stroke-width="1.5"/>
+    <text x="200" y="340" text-anchor="middle" fill="#FBEFEA" font-family="Georgia, serif" font-size="34" font-style="italic" font-weight="500">A Boca</text>
+    <text x="200" y="382" text-anchor="middle" fill="#FF3D91" font-family="Georgia, serif" font-size="30" font-style="italic">inesquecível</text>
+    <line x1="150" y1="420" x2="250" y2="420" stroke="#E4B871" stroke-width="1" opacity="0.6"/>
+    <text x="200" y="450" text-anchor="middle" fill="#E4B871" font-family="monospace" font-size="10" letter-spacing="4">MANUAL APLICADO</text>
+  </svg>
+</div><script>(function(){var s=document.getElementById("__splash");if(!s)return;function hide(){s.style.opacity="0";setTimeout(function(){if(s&&s.parentNode)s.parentNode.removeChild(s);},300);}if(document.readyState==="complete")hide();else window.addEventListener("load",hide);})();</script>
+</head>
+<body>
+
+<div class="toc-backdrop" id="tocBackdrop"></div>
+<aside class="toc-panel" id="tocPanel">
+  <button class="close" id="tocClose" aria-label="Fechar">×</button>
+  <div class="toc-title">Índice</div>
+
+  <h4>Boas-vindas</h4>
+  <a href="#p-cover"><span class="n">—</span>Capa</a>
+  <a href="#p-welcome"><span class="n">i</span>Antes de começar</a>
+  <a href="#p-method"><span class="n">ii</span>O Método · Ritmo · Pressão · Variação</a>
+  <a href="#p-consent"><span class="n">iii</span>Consentimento e leitura</a>
+
+  <h4>Os 11 Capítulos</h4>
+  <a href="#c-01"><span class="n">I</span>A boca antes do sexo</a>
+  <a href="#c-02"><span class="n">II</span>O que a boca dele quer sentir</a>
+  <a href="#c-03"><span class="n">III</span>Preparação · saliva, calma, presença</a>
+  <a href="#c-04"><span class="n">IV</span>Ritmo · o pilar mais importante</a>
+  <a href="#c-05"><span class="n">V</span>Pressão · o segundo pilar</a>
+  <a href="#c-06"><span class="n">VI</span>Variação · o terceiro pilar</a>
+  <a href="#c-07"><span class="n">VII</span>As mãos que a boca não usa</a>
+  <a href="#c-08"><span class="n">VIII</span>Ler o corpo dele em tempo real</a>
+  <a href="#c-09"><span class="n">IX</span>O fecho que ele leva pra semana</a>
+  <a href="#c-10"><span class="n">X</span>Dez erros que apagam o efeito</a>
+  <a href="#c-11"><span class="n">XI</span>Sua própria assinatura</a>
+
+  <h4>As 12 Técnicas</h4>
+  <a href="#t-01"><span class="n">01</span>A Chegada Lenta</a>
+  <a href="#t-02"><span class="n">02</span>O Anel de Saliva</a>
+  <a href="#t-03"><span class="n">03</span>A Escada de Pressão</a>
+  <a href="#t-04"><span class="n">04</span>O Beijo Profundo</a>
+  <a href="#t-05"><span class="n">05</span>A Língua-Chama</a>
+  <a href="#t-06"><span class="n">06</span>A Mão de Apoio</a>
+  <a href="#t-07"><span class="n">07</span>O Ritmo Duplo</a>
+  <a href="#t-08"><span class="n">08</span>A Pausa Suspensa</a>
+  <a href="#t-09"><span class="n">09</span>A Sucção Guiada</a>
+  <a href="#t-10"><span class="n">10</span>O Retorno</a>
+  <a href="#t-11"><span class="n">11</span>A Variação-Surpresa</a>
+  <a href="#t-12"><span class="n">12</span>A Assinatura Final</a>
+
+  <h4>As 5 Rotinas</h4>
+  <a href="#r-01"><span class="n">A</span>Rotina de 5 minutos</a>
+  <a href="#r-02"><span class="n">B</span>Rotina de 10 minutos</a>
+  <a href="#r-03"><span class="n">C</span>Rotina de 15 minutos</a>
+  <a href="#r-04"><span class="n">D</span>Rotina de manhã</a>
+  <a href="#r-05"><span class="n">E</span>Rotina de aniversário</a>
+
+  <h4>Ferramentas</h4>
+  <a href="#p-tracker"><span class="n">✦</span>Tracker de técnicas</a>
+  <a href="#p-checkin"><span class="n">✦</span>Auto-avaliação</a>
+  <a href="#p-fin"><span class="n">✦</span>Última palavra</a>
+</aside>
+
+<nav class="navbar">
+  <button class="toc-btn" id="tocOpen" aria-label="Índice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="4" y1="7" x2="20" y2="7"/>
+      <line x1="4" y1="12" x2="20" y2="12"/>
+      <line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+  </button>
+  <span class="sep"></span>
+  <button id="navPrev">← Anterior</button>
+  <span class="pos" id="navPos">—</span>
+  <button id="navNext">Próxima →</button>
+</nav>
+
+<main class="book">
+
+
+<!-- CAPA -->
+<section class="page cover" id="p-cover" data-screen-label="00 Capa">
+  <div class="frame"></div>
+
+  <div style="padding-top: 40px;">
+    <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: .4em; color: rgba(228,184,113,.75); text-transform: uppercase;">
+      Volume Único · Edição Íntima 2026
+    </div>
+    <div style="width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: .7;"></div>
+    <div style="font-family: var(--f-mono); font-size: 11px; letter-spacing: .35em; color: var(--rose-hot); text-transform: uppercase;">
+      Manual Aplicado
+    </div>
+  </div>
+
+  <div>
+    <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+      <svg width="140" height="70" viewBox="0 0 140 70" fill="none" stroke="#FF3D91" stroke-width="1.5" style="filter: drop-shadow(0 0 14px rgba(255,61,145,.4));">
+        <path d="M 30 40 Q 50 20 70 30 Q 90 20 110 40" stroke-linecap="round"/>
+        <path d="M 30 40 Q 50 55 70 45 Q 90 55 110 40" stroke-linecap="round"/>
+        <circle cx="30" cy="40" r="2" fill="#FF3D91"/>
+        <circle cx="110" cy="40" r="2" fill="#FF3D91"/>
+      </svg>
+    </div>
+
+    <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: .5em; color: var(--gold-hi); text-transform: uppercase; margin-bottom: 22px;">
+      · A Boca ·
+    </div>
+
+    <h1 style="font-family: var(--f-display); font-weight: 500; font-size: clamp(38px, 8vw, 72px); line-height: 1; margin: 0 0 10px; color: #FBEFEA; letter-spacing: -.02em; word-wrap: break-word; overflow-wrap: break-word; font-variation-settings: 'opsz' 96;">
+      A Boca<br><em style="color: transparent; background: linear-gradient(135deg,#FF3D91,#E5478E 50%,#A649B8); -webkit-background-clip: text; background-clip: text; font-weight: 500; font-style: italic;">inesquecível</em>
+    </h1>
+
+    <div class="rule-orn" style="max-width: 260px; margin: 30px auto;">
+      <span class="diamond"></span>
+    </div>
+
+    <div style="font-family: var(--f-display); font-size: 24px; font-style: italic; color: var(--rose-nude); line-height: 1.4; max-width: 500px; margin: 0 auto; letter-spacing: -.02em; font-weight: 400;">
+      Ritmo · Pressão · Variação<br>Um sistema, não uma lista de truques.
+    </div>
+
+    <div style="margin-top: 56px; font-family: var(--f-display); font-size: 17px; font-style: italic; color: var(--gold-hi); line-height: 1.5; letter-spacing: -.01em;">
+      Não são trinta técnicas soltas.<br>É um método.<br><span style="color: var(--rose-hot);">Aprende a construir, não a executar.</span>
+    </div>
+  </div>
+
+  <div>
+    <span class="stamp" style="border-color: var(--gold-hi); color: var(--gold-hi);">◆ 11 CAP. · 12 TÉCNICAS · 5 ROTINAS</span>
+  </div>
+</section>
+
+<!-- Colofão -->
+<section class="page" data-screen-label="Colofão">
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div style="padding-top: 140px; max-width: 560px; margin: 0 auto;">
+    <div class="mono-num" style="text-align: center;">Colofão</div>
+    <div class="rule-orn"><span class="diamond"></span></div>
+
+    <p class="body" style="text-align: center; font-family: var(--f-display); font-style: italic; font-size: 26px; line-height: 1.4; color: var(--ink); margin-bottom: 40px; letter-spacing: -.02em; font-weight: 400;">
+      Você não vai memorizar 30 técnicas. Vai aprender <span class="italic">três coisas</span> e usar elas em qualquer ordem. Isso é o que fica.
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="body sm" style="text-align: center; color: var(--ink-mute); line-height: 1.75;">
+      <strong style="color: var(--rose-hot); font-family: var(--f-display); font-style: italic; font-size: 18px; font-weight: 500;">A Boca Inesquecível</strong><br>
+      Manual Aplicado · Guia Adulta<br><br>
+      Complemento de <em style="color: var(--rose-nude);">Mapa do Prazer Masculino</em><br>
+      Vocabulário claro. Sem metáforas. Sem eufemismos vazios.<br><br>
+      Escrito por Sofía · Edição íntima<br>
+      2026 · Todos os direitos reservados
+    </p>
+
+    <div class="rule-orn" style="margin-top: 60px;"><span class="diamond"></span></div>
+
+    <p class="body sm" style="text-align: center; color: var(--ink-mute); font-style: italic;">
+      Este manual foi feito pra mulheres adultas em uma relação consentida.<br>
+      Fala do corpo com precisão. Se essa não é a sua vibe, feche agora e devolva o livro.
+    </p>
+  </div>
+
+  <div class="pnum">
+    <span class="mono-num">Colofão</span>
+    <span class="rule"></span>
+    <span class="num">ii</span>
+  </div>
+</section>
+
+
+<!-- BOAS-VINDAS -->
+<section class="page" id="p-welcome" data-screen-label="Antes de começar">
+  <div style="max-width: 620px; margin: 0 auto; padding-top: 40px;">
+    <span class="eyebrow">Antes de começar</span>
+    <h2 class="h-display" style="margin-top: 30px;">
+      Minha linda,<br><em class="italic">lê isso antes</em>.
+    </h2>
+    <div class="rule-orn" style="margin: 30px 0; max-width: 200px; margin-left: 0;"><span class="diamond"></span></div>
+
+    <p class="lead">Isso aqui é um manual aplicado. Não é teoria.</p>
+
+    <p class="body lg">Eu vou falar do corpo dele com precisão. Vou nomear as partes. Vou te ensinar o que fazer com a boca, com a mão, com o ritmo, com a respiração. Sem eufemismo. Sem metáfora fofa. Se você tá lendo isso é porque quer aprender de verdade.</p>
+
+    <p class="body lg">Antes de qualquer técnica, uma coisa é fundamental: <strong>você não faz isso pra ele. Faz com ele.</strong> A diferença muda tudo. Uma mulher que faz sexo oral com raiva escondida, ou com pressa, ou tentando "cumprir tabela" — ele sente. E o efeito se apaga.</p>
+
+    <p class="body lg">Uma mulher que faz porque <em>quer</em>, com curiosidade pelo corpo dele, com prazer no próprio ato — ele sente também. E é <em>disso</em> que a gente tá falando. É essa boca que fica na cabeça dele por semanas.</p>
+
+    <div class="callout hot" style="margin-top: 28px;">
+      <div class="h-label hot-text" style="margin-bottom: 10px;">A promessa deste livro</div>
+      <p class="body" style="margin: 0; color: var(--rose-hot); font-family: var(--f-display); font-style: italic; font-size: 20px; line-height: 1.4; font-weight: 400; letter-spacing: -.015em;">
+        Não são trinta técnicas soltas. É um sistema com três variáveis. Você domina três coisas e faz cem combinações diferentes.
+      </p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Manual · Boas-vindas</span><span class="rule"></span><span class="num">01</span></div>
+</section>
+
+<!-- O MÉTODO -->
+<section class="page hot" id="p-method" data-screen-label="O Método">
+  <div style="max-width: 700px; margin: 0 auto; padding-top: 30px;">
+    <span class="eyebrow hot">O Método</span>
+    <h2 class="h-display" style="margin-top: 24px;">
+      Três variáveis.<br><em class="italic">Cem combinações.</em>
+    </h2>
+    <p class="lead" style="font-size: 22px;">O corpo dele responde a três coisas ao mesmo tempo. Você aprende a controlar cada uma e a mudar quando o momento pedir.</p>
+    <div class="rule-orn"><span class="diamond"></span></div>
+
+    <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 30px;">
+
+      <div class="pillar" style="text-align: left; display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: start;">
+        <div>
+          <div class="num" style="text-align: left;">i</div>
+          <div class="mono-num">Pilar um</div>
+        </div>
+        <div>
+          <div class="name" style="text-align: left; margin-bottom: 8px;">Ritmo</div>
+          <p class="body sm" style="margin: 0;">A velocidade com que sua boca sobe e desce. Não é rápido nem lento — é <em>controlado</em>. Um ritmo consistente diz pro corpo dele: <em>pode confiar, alguém sabe o que tá fazendo</em>. Um ritmo caótico apaga tudo.</p>
+        </div>
+      </div>
+
+      <div class="pillar" style="text-align: left; display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: start; background: linear-gradient(180deg, rgba(229,71,142,.15), rgba(123,45,142,.1)); border-color: var(--magenta);">
+        <div>
+          <div class="num" style="text-align: left; color: var(--rose-hot);">ii</div>
+          <div class="mono-num" style="color: var(--rose-hot);">Pilar dois</div>
+        </div>
+        <div>
+          <div class="name" style="text-align: left; margin-bottom: 8px;">Pressão</div>
+          <p class="body sm" style="margin: 0;">Quanto os lábios apertam. Quanto a língua encosta. Quanto a sucção puxa. Pressão baixa é carinho e provocação. Pressão média é o motor. Pressão alta é a exceção — dura pouco e vale muito.</p>
+        </div>
+      </div>
+
+      <div class="pillar" style="text-align: left; display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: start; background: linear-gradient(135deg, rgba(255,61,145,.2), rgba(166,73,184,.18)); border-color: var(--rose-hot); box-shadow: 0 0 40px rgba(255,61,145,.1);">
+        <div>
+          <div class="num" style="text-align: left; color: var(--rose-hot);">iii</div>
+          <div class="mono-num" style="color: var(--rose-hot);">Pilar três</div>
+        </div>
+        <div>
+          <div class="name" style="text-align: left; margin-bottom: 8px; color: var(--rose-hot);">Variação</div>
+          <p class="body sm" style="margin: 0;">Você muda uma variável de cada vez. Nunca as três. Se você acelera, mantém a pressão. Se aperta mais, mantém o ritmo. Variar demais dispersa. Variar de menos entedia. A medida certa é aqui.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="body" style="font-family: var(--f-display); font-style: italic; font-size: 22px; text-align: center; color: var(--rose-nude); line-height: 1.4; font-weight: 400; letter-spacing: -.02em;">
+      Ritmo constrói. Pressão intensifica. Variação memoriza.
+    </p>
+  </div>
+  <div class="pnum"><span class="mono-num">Manual · Método</span><span class="rule"></span><span class="num">02</span></div>
+</section>
+
+<!-- CONSENTIMENTO -->
+<section class="page rose" id="p-consent" data-screen-label="Consentimento">
+  <div style="max-width: 640px; margin: 0 auto; padding-top: 40px;">
+    <span class="eyebrow">Base ética</span>
+    <h2 class="h-display" style="margin-top: 24px;">
+      Consentimento<br><em class="italic">e leitura</em>.
+    </h2>
+    <div class="rule-orn" style="max-width: 200px; margin-left: 0;"><span class="diamond"></span></div>
+
+    <p class="body lg">Antes de qualquer técnica, quatro regras que não se negociam:</p>
+
+    <div style="margin-top: 24px;">
+
+      <div style="display: grid; grid-template-columns: 44px 1fr; gap: 20px; align-items: start; margin-bottom: 22px;">
+        <div style="font-family: var(--f-display); font-style: italic; font-size: 34px; color: var(--gold); line-height: 1; font-weight: 500;">01</div>
+        <div>
+          <div class="h-section" style="font-size: 20px; margin-bottom: 6px;">Você quer fazer</div>
+          <p class="body" style="margin: 0;">Nunca por obrigação. Nunca pra "compensar" alguma coisa. Se você não tá com vontade hoje, esse manual não se abre hoje. Ele espera.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 44px 1fr; gap: 20px; align-items: start; margin-bottom: 22px;">
+        <div style="font-family: var(--f-display); font-style: italic; font-size: 34px; color: var(--gold); line-height: 1; font-weight: 500;">02</div>
+        <div>
+          <div class="h-section" style="font-size: 20px; margin-bottom: 6px;">Ele quer receber</div>
+          <p class="body" style="margin: 0;">Parece óbvio, mas não é sempre. Se ele tá cansado, se ele tá com a cabeça longe, se ele não tá presente — o efeito não gruda. Espera o momento em que ele tá aqui.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 44px 1fr; gap: 20px; align-items: start; margin-bottom: 22px;">
+        <div style="font-family: var(--f-display); font-style: italic; font-size: 34px; color: var(--gold); line-height: 1; font-weight: 500;">03</div>
+        <div>
+          <div class="h-section" style="font-size: 20px; margin-bottom: 6px;">Você pode parar quando quiser</div>
+          <p class="body" style="margin: 0;">Se algum momento não tá gostoso, você para. Sem culpa. Sem explicação longa. Um "vem cá, quero te abraçar" resolve. O manual não vale mais que o seu conforto.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 44px 1fr; gap: 20px; align-items: start;">
+        <div style="font-family: var(--f-display); font-style: italic; font-size: 34px; color: var(--gold); line-height: 1; font-weight: 500;">04</div>
+        <div>
+          <div class="h-section" style="font-size: 20px; margin-bottom: 6px;">Higiene e saúde</div>
+          <p class="body" style="margin: 0;">Casal exclusivo com testes recentes de IST negativos. Se não é o caso, camisinha — e o manual funciona igual, só ajusta a técnica. Nenhuma técnica vale mais que sua saúde.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top: 24px;">
+      <div class="h-label" style="color: var(--rose-hot);">Última coisa</div>
+      <p class="body" style="margin: 0;">Se você tem trauma sexual, terapia primeiro. Este livro não substitui acompanhamento profissional. Ele te ajuda numa dimensão específica: técnica. Não resolve o resto.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Manual · Ética</span><span class="rule"></span><span class="num">03</span></div>
+</section>
+
+<!-- Divisor 11 caps -->
+<section class="page material-opener" id="p-divider-caps" data-screen-label="Divisor · Capítulos">
+  <div class="mono-num" style="color: var(--gold-hi); margin-bottom: 40px;">Primeira parte</div>
+
+  <svg width="140" height="70" viewBox="0 0 140 70" fill="none" stroke="#FF3D91" stroke-width="1.5" style="filter: drop-shadow(0 0 20px rgba(255,61,145,.4));">
+    <path d="M 30 40 Q 50 20 70 30 Q 90 20 110 40" stroke-linecap="round"/>
+    <path d="M 30 40 Q 50 55 70 45 Q 90 55 110 40" stroke-linecap="round"/>
+  </svg>
+
+  <div style="margin: 40px 0;">
+    <h2 style="font-family: var(--f-display); font-weight: 500; font-size: clamp(48px, 9vw, 84px); line-height: .98; color: var(--ink); margin: 0; text-align: center; letter-spacing: -.025em; word-wrap: break-word;">
+      Onze<br><em style="color: transparent; background: linear-gradient(135deg,#FF3D91,#E5478E,#A649B8); -webkit-background-clip: text; background-clip: text; font-weight: 500; font-style: italic;">capítulos</em>
+    </h2>
+  </div>
+
+  <div class="rule-orn" style="max-width: 240px;"><span class="diamond"></span></div>
+
+  <p style="font-family: var(--f-display); font-style: italic; font-size: 22px; color: var(--rose-nude); text-align: center; max-width: 480px; line-height: 1.4; letter-spacing: -.02em;">
+    Cada um traz uma coisa. Ler em ordem funciona melhor.
+  </p>
+
+  <div style="position: absolute; bottom: 60px; left: 0; right: 0; text-align: center;">
+    <span class="stamp hot">◆ Aqui começa</span>
+  </div>
+</section>
+
+
+<section class="page" id="c-01" data-screen-label="Cap I · A boca antes do sexo">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo um</span>
+    <span class="roman" style="font-size:48px;">I</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">A</em> boca antes do sexo</h2>
+  <p class="lead" style="font-size:22px;">O que rola na cabeça dele antes de você começar. E como isso muda o que a boca vai fazer depois.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <div class="h-label">A cabeça manda no corpo</div>
+    <p class="body">Um homem que vem tenso, cansado, com a cabeça no trabalho — o corpo dele responde 30% do que responderia se ele estivesse presente. Você pode fazer a técnica perfeita e o resultado ser morno. Não é a técnica. É o ponto de partida.</p>
+    <p class="body">Antes de qualquer boca, cinco minutos de <strong>desaceleração</strong>. Um abraço apertado. Uma mão nas costas. Um cheiro no pescoço. Você não tá dando "preliminar" — você tá <em>trazendo ele pra cá</em>.</p>
+
+    <div class="h-label" style="margin-top:20px;">O ambiente que entrega antes da boca</div>
+    <p class="body">Luz baixa (não escuro total — ele quer ver você). Celular longe. Porta fechada. Um cheiro que já significa alguma coisa pros dois. Nada disso é acessório. Todos entram na conta do que faz o momento memorável.</p>
+
+    <div class="callout" style="margin-top:20px;">
+      <div class="h-label">A regra dos 5 minutos</div>
+      <p class="body sm" style="margin:0;">Antes de você chegar perto da cintura dele, cinco minutos de contato acima da cintura. Boca no pescoço, mão no peito, olhar. Sem pressa. Isso duplica o tempo real que o corpo dele passa em prazer.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap I</span><span class="rule"></span><span class="num">04</span></div>
+</section>
+<section class="page warm" id="c-02" data-screen-label="Cap II · O que a boca dele quer sentir">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo dois</span>
+    <span class="roman" style="font-size:48px;">II</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">O</em> que a boca dele quer sentir</h2>
+  <p class="lead" style="font-size:22px;">Não é o que você acha. É o que o corpo dele responde. E os dois quase nunca coincidem no começo.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">A maioria das mulheres aprendeu sexo oral por três fontes: pornô (que exagera pra câmera), amigas (que exageram pra parecer experientes), e o próprio parceiro anterior (que talvez também não soubesse). O resultado: técnicas que parecem certas mas não bate.</p>
+
+    <p class="body">O que o corpo dele realmente responde:</p>
+
+    <div style="margin-top:16px;">
+      <div class="callout" style="margin-bottom:12px;">
+        <div class="h-label">1 · Calor úmido, não fricção seca</div>
+        <p class="body sm" style="margin:0;">Saliva é a diferença entre uma boca e uma boca inesquecível. Sem saliva, cria fricção — que é irritante, não prazeroso. Boca cheia, sem economia.</p>
+      </div>
+      <div class="callout" style="margin-bottom:12px;">
+        <div class="h-label">2 · Ritmo constante, não velocidade máxima</div>
+        <p class="body sm" style="margin:0;">O corpo dele "trava" no seu ritmo. Se você mantém, ele sobe. Se você acelera de repente, ele cai. A explosão do fim vem <em>de manter</em>, não de correr.</p>
+      </div>
+      <div class="callout" style="margin-bottom:12px;">
+        <div class="h-label">3 · Presença, não performance</div>
+        <p class="body sm" style="margin:0;">Ele vê tudo. Se você olha pra ele em algum momento, mesmo por três segundos, o cérebro dele registra: <em>ela tá aqui, comigo</em>. Uma boca com olhar vale três sem olhar.</p>
+      </div>
+      <div class="callout">
+        <div class="h-label">4 · Cabeça relaxada, mandíbula solta</div>
+        <p class="body sm" style="margin:0;">Se você tá tensa, ele sente. Solta a mandíbula. Respira pelo nariz. Se em algum momento você travar, para e respira. Ninguém vai ganhar nada com você tensa.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap II</span><span class="rule"></span><span class="num">05</span></div>
+</section>
+<section class="page" id="c-03" data-screen-label="Cap III · Preparação">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo três</span>
+    <span class="roman" style="font-size:48px;">III</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Preparação</em></h2>
+  <p class="lead" style="font-size:22px;">Saliva. Calma. Presença. Três coisas que fazem tudo depois funcionar. Ou não.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg"><strong>Saliva.</strong> Antes de começar, boca úmida. Se você tá com a boca seca (nervosa, ar-condicionado, cansaço), toma um gole de água. Não é frescura — é preparação de instrumento.</p>
+
+    <p class="body lg"><strong>Calma.</strong> Duas respirações lentas antes de baixar. Não é meditação, é reset. Solta os ombros. Solta a mandíbula. Se você tá com pressa mental, ele vai sentir na boca. A pressa mental vira pressa física sem você perceber.</p>
+
+    <p class="body lg"><strong>Presença.</strong> Olha pra ele antes de começar. Sorri. Um segundo de contato visual muda o registro do que vem. Ele para de esperar "sexo oral" e começa a esperar <em>você</em>.</p>
+
+    <div class="anchor" style="margin-top:20px;">
+      <p class="txt">Uma boca preparada vale por duas apressadas.</p>
+    </div>
+
+    <p class="body" style="margin-top:20px;"><strong>Posição.</strong> A sua posição importa quase tanto quanto a técnica. Se você tá desconfortável, a técnica quebra em três minutos. Testa: joelhos apoiados em travesseiro, ele sentado ou deitado. Sua nuca precisa estar solta. Se dói pescoço, você para. Nenhum orgasmo dele vale sua coluna.</p>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap III</span><span class="rule"></span><span class="num">06</span></div>
+</section>
+<section class="page hot" id="c-04" data-screen-label="Cap IV · Ritmo — o pilar mais importante">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow hot">Capítulo quatro</span>
+    <span class="roman" style="font-size:48px;">IV</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Ritmo</em> — o pilar mais importante</h2>
+  <p class="lead" style="font-size:22px;">Se você só puder aprender uma coisa deste livro, aprende ritmo. É o que separa boca aleatória de boca inesquecível.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Ritmo é <strong>a velocidade constante</strong> com que sua boca sobe e desce. Não é rápido. Não é lento. É <em>estável</em>. O corpo dele grava esse ritmo em segundos e começa a subir junto.</p>
+
+    <p class="body">Existem quatro ritmos que você precisa saber:</p>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-top:20px;">
+      <div class="card" style="padding:18px 22px;">
+        <div class="h-label">Ritmo 1 · Lento (60 bpm)</div>
+        <p class="body sm" style="margin:0;">Um movimento completo por segundo. Pra começar, pra provocar, pra prolongar. Ele fica na dúvida se você vai acelerar. Essa dúvida é o motor.</p>
+      </div>
+      <div class="card" style="padding:18px 22px;">
+        <div class="h-label">Ritmo 2 · Médio (90 bpm)</div>
+        <p class="body sm" style="margin:0;">Um e meio por segundo. É o ritmo de trabalho. É onde ele sobe. A maior parte do tempo você vai estar aqui.</p>
+      </div>
+      <div class="card" style="padding:18px 22px;">
+        <div class="h-label">Ritmo 3 · Rápido (120 bpm)</div>
+        <p class="body sm" style="margin:0;">Dois por segundo. Curto, no fim. Não passa de um minuto. Se você fica muito tempo aqui, ele "estoura" ou dessensibiliza.</p>
+      </div>
+      <div class="card hot" style="padding:18px 22px;">
+        <div class="h-label" style="color:var(--rose-hot);">Ritmo 4 · Suspenso (0 bpm)</div>
+        <p class="body sm" style="margin:0;">Pausa total. Boca inteira sobre ele, sem movimento, três segundos. É o vazio que faz o próximo movimento explodir. Usa uma vez por rotina.</p>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:20px;">
+      <div class="h-label" style="color:var(--rose-hot);">A regra que quase ninguém segue</div>
+      <p class="body sm" style="margin:0;">Você <strong>fica pelo menos 90 segundos em cada ritmo</strong> antes de mudar. Menos que isso, o corpo dele não firma. Mais que dois minutos, entedia. Cronometra mentalmente ou conta respirações — quatro respirações são mais ou menos 60 segundos.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap IV</span><span class="rule"></span><span class="num">07</span></div>
+</section>
+
+<section class="page" id="c-05" data-screen-label="Cap V · Pressão — o segundo pilar">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo cinco</span>
+    <span class="roman" style="font-size:48px;">V</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Pressão</em> — o segundo pilar</h2>
+  <p class="lead" style="font-size:22px;">Quanto lábio, quanto língua, quanto sucção. A pressão é o que faz o corpo dele responder no ponto que você quer.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Pressão é <strong>como você fecha</strong> a boca em cima dele. Não é força — é <em>calibragem</em>. Pressão baixa é carinho. Pressão média é o motor. Pressão alta é a exceção.</p>
+
+    <p class="body">A régua da pressão:</p>
+
+    <div style="margin-top:20px;">
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-2);">
+        <div class="mono-num" style="color:var(--gold);">Nível 1</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:19px;letter-spacing:-.015em;">Toque</strong><p class="body sm" style="margin:4px 0 0;">Lábios só encostam. Língua passa por cima sem apertar. Pra provocar antes de começar de verdade.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-2);">
+        <div class="mono-num" style="color:var(--gold);">Nível 2</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:19px;letter-spacing:-.015em;">Envolve</strong><p class="body sm" style="margin:4px 0 0;">Lábios fecham em volta, sem apertar. Como se você tá bebendo água morna com canudo grosso. Esse é o ponto onde você fica 70% do tempo.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-2);">
+        <div class="mono-num" style="color:var(--gold);">Nível 3</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:19px;letter-spacing:-.015em;">Sucção suave</strong><p class="body sm" style="margin:4px 0 0;">Lábios envolvem <em>e</em> puxam levemente pra dentro. Como se você tá tirando o ar de um canudo aos poucos. Aqui ele começa a arqueado.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:16px;padding:14px 0;">
+        <div class="mono-num" style="color:var(--gold);">Nível 4</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:19px;letter-spacing:-.015em;">Sucção intensa</strong><p class="body sm" style="margin:4px 0 0;">Sucção forte por poucos segundos. Máximo 5 movimentos seguidos, depois volta pro Nível 2. Se abusa, dessensibiliza — e você perde o momento.</p></div>
+      </div>
+    </div>
+
+    <div class="anchor" style="margin-top:20px;">
+      <p class="txt">Pressão média sustenta. Pressão alta temperar. Nunca ao contrário.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap V</span><span class="rule"></span><span class="num">08</span></div>
+</section>
+<section class="page rose" id="c-06" data-screen-label="Cap VI · Variação — o terceiro pilar">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo seis</span>
+    <span class="roman" style="font-size:48px;">VI</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Variação</em> — o terceiro pilar</h2>
+  <p class="lead" style="font-size:22px;">A diferença entre uma boca boa e uma boca inesquecível é a variação. Mas variação sábia — não caos.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Variação é <strong>trocar uma variável de cada vez</strong>. Nunca duas. Nunca três. Se você acelera, mantém a pressão constante. Se aperta mais, mantém o ritmo. Assim o cérebro dele consegue processar o "novo" sem se perder.</p>
+
+    <p class="body">Combinações que funcionam:</p>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-top:20px;">
+      <div class="card gold" style="padding:16px 20px;">
+        <div class="h-label gold">Variação A · Muda o ritmo</div>
+        <p class="body sm" style="margin:0;">Ritmo médio → ritmo lento. Pressão fica no Nível 2 o tempo todo. Ele sente o "freio" e o corpo relaxa antes de subir de novo. Faz uma vez por rotina.</p>
+      </div>
+      <div class="card gold" style="padding:16px 20px;">
+        <div class="h-label gold">Variação B · Muda a pressão</div>
+        <p class="body sm" style="margin:0;">Nível 2 → Nível 3. Ritmo fica no médio. Ele sente que "aumentou" mesmo sem você acelerar. É a variação mais underrated.</p>
+      </div>
+      <div class="card gold" style="padding:16px 20px;">
+        <div class="h-label gold">Variação C · Muda o foco</div>
+        <p class="body sm" style="margin:0;">Sai da glande, vai pra base, volta. Pressão e ritmo iguais. Só muda <em>onde</em> a boca tá. Pra descansar sem parar.</p>
+      </div>
+      <div class="card hot" style="padding:16px 20px;">
+        <div class="h-label" style="color:var(--rose-hot);">Variação D · Muda tudo (raro)</div>
+        <p class="body sm" style="margin:0;">A pausa suspensa. Você para tudo. Boca só encosta. Três segundos. Depois recomeça devagar. Uma vez, no meio da rotina, quando você sentir que ele tá pra explodir cedo demais.</p>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:20px;">
+      <div class="h-label" style="color:var(--rose-hot);">O erro da variação</div>
+      <p class="body sm" style="margin:0;">Variar demais é pior que não variar. Se você troca de tudo a cada dez segundos, ele nunca firma numa sensação. A regra: mudar no máximo uma coisa por minuto. Menos é mais aqui.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap VI</span><span class="rule"></span><span class="num">09</span></div>
+</section>
+<section class="page" id="c-07" data-screen-label="Cap VII · As mãos que a boca não usa">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo sete</span>
+    <span class="roman" style="font-size:48px;">VII</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">As</em> mãos que a boca não usa</h2>
+  <p class="lead" style="font-size:22px;">Sua boca faz uma coisa. Suas mãos fazem outra. As duas juntas é o que multiplica o efeito.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Uma boca sozinha é uma técnica. Uma boca + duas mãos coordenadas é <em>arte</em>. As mãos não são acessório — são a metade que quase ninguém treina.</p>
+
+    <p class="body">Onde ficam as mãos:</p>
+
+    <div style="margin-top:20px;">
+      <div class="callout" style="margin-bottom:12px;">
+        <div class="h-label">Mão 1 · Apoio na base</div>
+        <p class="body sm" style="margin:0;">A mão que envolve a base dele. Não segura — <em>envolve</em>. Faz movimento com o mesmo ritmo da boca. Assim toda a extensão dele recebe atenção, não só o que sua boca alcança.</p>
+      </div>
+      <div class="callout" style="margin-bottom:12px;">
+        <div class="h-label">Mão 2 · Mão livre</div>
+        <p class="body sm" style="margin:0;">A outra. Não fica parada nunca. Vai pra coxa, pro peito, pra bola (com muito cuidado), pra sua própria coxa se você quiser. Cada lugar adiciona uma dimensão.</p>
+      </div>
+    </div>
+
+    <p class="body" style="margin-top:20px;">Coordenação básica: <strong>boca e mão 1 se movem juntas</strong>, não em oposição. Se a boca sobe, a mão sobe. Se a boca desce, a mão desce. Isso cria a sensação de que a extensão inteira tá sendo tocada ao mesmo tempo.</p>
+
+    <div class="anchor" style="margin-top:20px;">
+      <p class="txt">A mão que ninguém usa é a que mais surpreende: a que puxa você pra baixo, ou a que segura o cabelo dele. Uma técnica com um ponto de agressão suave gruda mais.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap VII</span><span class="rule"></span><span class="num">10</span></div>
+</section>
+<section class="page warm" id="c-08" data-screen-label="Cap VIII · Ler o corpo dele em tempo real">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo oito</span>
+    <span class="roman" style="font-size:48px;">VIII</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Ler</em> o corpo dele em tempo real</h2>
+  <p class="lead" style="font-size:22px;">Ele te fala tudo. Não com palavras — com o corpo. Aprende a ler e você para de precisar perguntar.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">O corpo dele te dá quatro sinais principais. Se você aprende a ler, para de correr no escuro e começa a <em>guiar</em>.</p>
+
+    <div style="margin-top:20px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="card" style="padding:18px 22px;">
+          <div class="h-label">Sinal 1 · Respiração</div>
+          <p class="body sm" style="margin:0;">Rasa e rápida = ele tá subindo. Longa e funda = ele tá presente e curtindo o processo. Presa = alguma coisa apertou ou tá quase explodindo.</p>
+        </div>
+        <div class="card" style="padding:18px 22px;">
+          <div class="h-label">Sinal 2 · Barriga</div>
+          <p class="body sm" style="margin:0;">A barriga contrai involuntariamente antes do fim. Se você vê o abdômen dele apertar rítmico, faltam 30 segundos. Ajusta pra chegada.</p>
+        </div>
+        <div class="card" style="padding:18px 22px;">
+          <div class="h-label">Sinal 3 · Coxas</div>
+          <p class="body sm" style="margin:0;">Coxas relaxadas = ele tá aberto, deixando. Coxas tensas = ele tá segurando, controlando (bom ou ruim, precisa ler o contexto).</p>
+        </div>
+        <div class="card" style="padding:18px 22px;">
+          <div class="h-label">Sinal 4 · Barulho</div>
+          <p class="body sm" style="margin:0;">Silêncio total pode ser concentração ou desconforto. Muito barulho pode ser prazer ou performance. Olha na cara. A cara não mente.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="body" style="margin-top:20px;">Uma coisa: <strong>não é obrigação ler tudo isso na primeira vez</strong>. Você desenvolve com a mesma pessoa. Cada corpo é um mapa diferente e você vai aprender o dele com repetição, não com manual.</p>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap VIII</span><span class="rule"></span><span class="num">11</span></div>
+</section>
+
+<section class="page" id="c-09" data-screen-label="Cap IX · O fecho que ele leva pra semana">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo nove</span>
+    <span class="roman" style="font-size:48px;">IX</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">O</em> fecho que ele leva pra semana</h2>
+  <p class="lead" style="font-size:22px;">O que você faz nos três minutos depois pesa mais que o que fez na meia hora antes. Fecho errado apaga tudo.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Muita boca inesquecível se apaga porque o fecho é ruim. Você faz meia hora incrível, e nos três minutos depois entrega o momento errado: levanta rápido, vai lavar a boca, olha o celular, muda de assunto. O cérebro dele arquiva a memória com essa etiqueta final.</p>
+
+    <p class="body">O fecho positivo, que faz ele carregar isso pela semana toda:</p>
+
+    <div style="margin-top:20px;">
+      <div style="display:grid;grid-template-columns:32px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-2);">
+        <div style="font-family:var(--f-display);font-style:italic;font-size:26px;color:var(--gold);font-weight:500;">1.</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:20px;letter-spacing:-.015em;">Não sai correndo</strong><p class="body sm" style="margin:4px 0 0;">Depois do fim, você sobe. Corpo cola no dele. Cabeça no peito ou no ombro. Fica ali dois minutos, mínimo. Sem falar. Sem pensar.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:32px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-2);">
+        <div style="font-family:var(--f-display);font-style:italic;font-size:26px;color:var(--gold);font-weight:500;">2.</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:20px;letter-spacing:-.015em;">Uma mão continua tocando</strong><p class="body sm" style="margin:4px 0 0;">Passa a mão pelo peito, pelo braço. Sem intenção. Só pra manter contato. É o "cool down" que ele nem sabia que precisava.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:32px 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-2);">
+        <div style="font-family:var(--f-display);font-style:italic;font-size:26px;color:var(--gold);font-weight:500;">3.</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:20px;letter-spacing:-.015em;">Uma frase-âncora</strong><p class="body sm" style="margin:4px 0 0;">Duas ou três palavras. <em>"Adorei"</em>. <em>"Você é gostoso"</em>. <em>"Fiquei com vontade também"</em>. Não é elogio de desempenho — é confidência.</p></div>
+      </div>
+      <div style="display:grid;grid-template-columns:32px 1fr;gap:16px;padding:14px 0;">
+        <div style="font-family:var(--f-display);font-style:italic;font-size:26px;color:var(--gold);font-weight:500;">4.</div>
+        <div><strong style="color:var(--rose-hot);font-family:var(--f-display);font-style:italic;font-size:20px;letter-spacing:-.015em;">Silêncio bom</strong><p class="body sm" style="margin:4px 0 0;">Depois de tudo isso, silêncio. Não precisa comentar. Não precisa avaliar. Deixa ele processar. É nesse silêncio que a memória se grava.</p></div>
+      </div>
+    </div>
+
+    <div class="anchor" style="margin-top:20px;">
+      <p class="txt">A boca inesquecível não termina quando termina. Termina três minutos depois, no colo.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap IX</span><span class="rule"></span><span class="num">12</span></div>
+</section>
+<section class="page warm" id="c-10" data-screen-label="Cap X · Dez erros que apagam o efeito">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Capítulo dez</span>
+    <span class="roman" style="font-size:48px;">X</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Dez</em> erros que apagam o efeito</h2>
+  <p class="lead" style="font-size:22px;">Coisas comuns que qualquer mulher pode fazer sem perceber. E que apagam o trabalho todo.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Não é sobre "fazer errado". É sobre coisas que <em>anulam</em> o esforço. Uma boca boa com um desses erros vira boca esquecida.</p>
+
+    <div style="margin-top:20px;">
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">01</div><p class="body sm" style="margin:0;"><strong>Pressa mental.</strong> Você tá contando os segundos pra acabar. Ele sente.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">02</div><p class="body sm" style="margin:0;"><strong>Boca seca.</strong> Fricção incomoda. Não é sensual.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">03</div><p class="body sm" style="margin:0;"><strong>Dentes.</strong> Um dente aparece uma vez, o corpo dele trava por 30 segundos. Cobre com o lábio sempre.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">04</div><p class="body sm" style="margin:0;"><strong>Ritmo instável.</strong> Muda a cada dez segundos, ele nunca firma numa sensação.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">05</div><p class="body sm" style="margin:0;"><strong>Ausência de mãos.</strong> Duas mãos paradas equivale a fazer metade do trabalho possível.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">06</div><p class="body sm" style="margin:0;"><strong>Zero contato visual.</strong> Não olha ele em nenhum momento — vira anônimo.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">07</div><p class="body sm" style="margin:0;"><strong>Pressão máxima o tempo todo.</strong> Ele dessensibiliza e o fim vira anticlimático.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">08</div><p class="body sm" style="margin:0;"><strong>Boca de performance.</strong> Barulhinhos exagerados de pornô. Ele sabe que é performance.</p></div>
+      <div class="callout" style="margin-bottom:8px;padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">09</div><p class="body sm" style="margin:0;"><strong>Levantar rápido depois.</strong> Vai lavar a boca antes de dar dois minutos de colo. Apaga tudo.</p></div>
+      <div class="callout" style="padding:12px 16px;"><div class="h-label" style="margin:0 0 4px;">10</div><p class="body sm" style="margin:0;"><strong>Comentar o desempenho depois.</strong> "Você gostou?" com cara de exame. Nunca faz.</p></div>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap X</span><span class="rule"></span><span class="num">13</span></div>
+</section>
+<section class="page hot" id="c-11" data-screen-label="Cap XI · Sua própria assinatura">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow hot">Capítulo onze</span>
+    <span class="roman" style="font-size:48px;">XI</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;"><em class="italic">Sua</em> própria assinatura</h2>
+  <p class="lead" style="font-size:22px;">Depois que você domina Ritmo · Pressão · Variação, você cria a sua. E é a sua que fica inesquecível — não a de ninguém.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div style="margin-top:20px;">
+    <p class="body lg">Todas as mulheres que fazem boca inesquecível têm uma coisa em comum: <strong>uma assinatura</strong>. Um pequeno gesto próprio que só a boca dela tem. Pode ser um jeito de segurar, uma frase que ela fala antes de começar, uma pausa específica.</p>
+
+    <p class="body">A sua assinatura vem de duas fontes:</p>
+
+    <div style="margin-top:20px;">
+      <div class="callout" style="margin-bottom:14px;">
+        <div class="h-label">Fonte 1 · O que você mais curte</div>
+        <p class="body sm" style="margin:0;">Qual momento da técnica <em>você</em> gosta mais? Que parte do corpo dele você adora tocar? Que instante do processo você não vê a hora de chegar? A resposta pra isso é o núcleo da sua assinatura.</p>
+      </div>
+      <div class="callout">
+        <div class="h-label">Fonte 2 · O que ele mais responde</div>
+        <p class="body sm" style="margin:0;">Depois de algumas vezes, você identifica: <em>toda vez que faço X, ele reage forte</em>. Esse X vira seu movimento assinatura. Não é obrigatório — é o que grava.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="h-label">Espaço pra você anotar</div>
+      <p class="body sm">Depois de algumas vezes com esse manual, o que virou <em>sua</em> assinatura? Aquele gesto ou momento que só a sua boca faz?</p>
+      <textarea class="field" data-key="boca_assinatura" placeholder="Ex: eu paro sempre por três segundos na cabeça antes de começar de novo. Ele espera. E chega diferente." style="min-height:100px;"></textarea>
+    </div>
+
+    <div class="anchor" style="margin-top:20px;">
+      <p class="txt">O que fica não é técnica. É a sua boca sendo a sua boca.</p>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Cap XI</span><span class="rule"></span><span class="num">14</span></div>
+</section>
+
+<section class="page" id="t-01" data-screen-label="Técnica 01 · A Chegada Lenta">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 01</span>
+    <span class="roman" style="font-size:42px;">01</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Chegada Lenta</h2>
+  <p class="lead" style="font-size:20px;">A entrada que faz ele esquecer o próprio nome.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Estabelecer o ritmo desde o primeiro segundo. Provocar a antecipação — que é metade do prazer.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Sempre no começo. Nunca pula. É a fundação do resto.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Boca <em>encosta</em> na base primeiro. Sobe devagar, com lábios fechados. Passa a língua uma vez. Volta ao início. Faz isso três vezes antes de envolver de verdade.</div></div>
+  </div>
+
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">A pressa apaga a antecipação. Se você sente vontade de acelerar aqui, é porque tá funcionando.</p>
+  </div>
+
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t01_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t01_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Técnica 01</span><span class="rule"></span><span class="num">15</span></div>
+</section>
+<section class="page" id="t-02" data-screen-label="Técnica 02 · O Anel de Saliva">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 02</span>
+    <span class="roman" style="font-size:42px;">02</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">O</em> Anel de Saliva</h2>
+  <p class="lead" style="font-size:20px;">Usa a boca inteira, não só os lábios.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Criar uma sensação de "abraço" em vez de "pinça". A saliva faz o deslizamento suave que substitui força bruta.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Depois da Chegada Lenta. É a técnica base do "estar dentro da boca".</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Boca cheia de saliva. Envolve com lábios frouxos (Nível 2 de pressão). Movimento inteiro, sem apertar. Deixa a saliva fazer o trabalho de fricção.</div></div>
+  </div>
+
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Se você economiza saliva, cria fricção seca. Toma um gole de água antes se precisar.</p>
+  </div>
+
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t02_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t02_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Técnica 02</span><span class="rule"></span><span class="num">16</span></div>
+</section>
+<section class="page" id="t-03" data-screen-label="Técnica 03 · A Escada de Pressão">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 03</span>
+    <span class="roman" style="font-size:42px;">03</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Escada de Pressão</h2>
+  <p class="lead" style="font-size:20px;">Sobe a pressão degrau por degrau, sem chegar no topo cedo.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Modula o Nível 2 → Nível 3 → Nível 2 → Nível 3. Cria a sensação de que "algo tá aumentando" sem dessensibilizar.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Depois de dois minutos de ritmo estabelecido.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Cinco movimentos no Nível 2. Cinco no Nível 3. Volta pro 2. Cinco no 3. Repete três vezes. Ritmo se mantém constante o tempo todo.</div></div>
+  </div>
+
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Nunca chega no Nível 4 nesta técnica. O Nível 4 é reservado pro fim.</p>
+  </div>
+
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t03_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t03_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Técnica 03</span><span class="rule"></span><span class="num">17</span></div>
+</section>
+<section class="page" id="t-04" data-screen-label="Técnica 04 · O Beijo Profundo">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 04</span>
+    <span class="roman" style="font-size:42px;">04</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">O</em> Beijo Profundo</h2>
+  <p class="lead" style="font-size:20px;">A boca desce mais do que o normal por três movimentos.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Quebra o padrão do ritmo médio com uma descida mais funda. Só três vezes — depois volta ao normal.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">No meio da rotina, quando o corpo dele já tá firmado.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Descida normal, normal, normal, <em>mais funda</em>, normal, normal, <em>mais funda</em>, normal, normal, <em>mais funda</em>. Volta ao ritmo padrão.</div></div>
+  </div>
+
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Só desce o quanto for confortável. Se você reflexa, para. Nenhuma técnica vale ficar mal.</p>
+  </div>
+
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t04_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t04_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Técnica 04</span><span class="rule"></span><span class="num">18</span></div>
+</section>
+
+<section class="page" id="t-05" data-screen-label="Técnica 05 · A Língua-Chama">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 05</span>
+    <span class="roman" style="font-size:42px;">05</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Língua-Chama</h2>
+  <p class="lead" style="font-size:20px;">A língua faz uma coisa diferente enquanto a boca continua.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">A ponta da língua desenha pequenos círculos ou zigue-zagues na parte mais sensível, no meio da rotina normal.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Depois de estabelecido o ritmo, quando você percebe que ele tá "acostumando" com a sensação.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Enquanto sobe e desce no ritmo médio, a língua faz um pequeno movimento circular ou lateral em cima da glande a cada 3 movimentos. Ele sente um "extra".</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Movimento pequeno. Não é a língua toda — é só a ponta. Um centímetro de movimento vale mais que um giro completo.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t05_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t05_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 05</span><span class="rule"></span><span class="num">19</span></div>
+</section>
+<section class="page" id="t-06" data-screen-label="Técnica 06 · A Mão de Apoio">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 06</span>
+    <span class="roman" style="font-size:42px;">06</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Mão de Apoio</h2>
+  <p class="lead" style="font-size:20px;">A mão que se move em sincronia com a boca, cobrindo o que a boca não alcança.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Estender a sensação por toda a extensão dele, não só a parte que sua boca cobre.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Do começo até o fim. Deveria ser padrão de toda técnica.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">A mão envolve a base com pressão Nível 2 e se move em sincronia perfeita com sua boca. Se a boca sobe 5 cm, a mão sobe 5 cm. É <em>uma</em> unidade se movendo.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Se você quer variar sem confundir, mantém a boca e muda só a pressão da mão. Ou vice-versa.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t06_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t06_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 06</span><span class="rule"></span><span class="num">20</span></div>
+</section>
+<section class="page" id="t-07" data-screen-label="Técnica 07 · O Ritmo Duplo">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 07</span>
+    <span class="roman" style="font-size:42px;">07</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">O</em> Ritmo Duplo</h2>
+  <p class="lead" style="font-size:20px;">A boca em um ritmo, a mão em outro. Só pra pessoas que já dominam o básico.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Criar duas camadas de sensação ao mesmo tempo. É avançado — não faz antes de dominar Ritmo constante.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Depois de você ter feito as técnicas 1-6 várias vezes. Não é técnica pra iniciante.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Boca no ritmo lento. Mão no ritmo médio. Depois inverte: boca médio, mão lento. Testa qual combinação funciona pra ele. Cada corpo responde diferente.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Se você se perde, volta pro ritmo único. Nenhuma técnica avançada vale confundir o momento.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t07_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t07_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 07</span><span class="rule"></span><span class="num">21</span></div>
+</section>
+<section class="page" id="t-08" data-screen-label="Técnica 08 · A Pausa Suspensa">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 08</span>
+    <span class="roman" style="font-size:42px;">08</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Pausa Suspensa</h2>
+  <p class="lead" style="font-size:20px;">Você para. Boca inteira em cima. Sem mover. Três segundos.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Cria um vazio que faz o próximo movimento explodir. Uma vez por rotina, no máximo.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Quando você sente que ele tá quase pra explodir cedo, ou depois de uma técnica intensa.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Sua boca fica envolvendo, sem mover. Suas mãos param. Você respira. Três segundos exatos. Depois volta com um movimento lento e profundo.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">É contra-intuitivo. Você vai sentir vontade de continuar. Não continua. É a pausa que faz o próximo movimento valer duas vezes.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t08_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t08_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 08</span><span class="rule"></span><span class="num">22</span></div>
+</section>
+
+<section class="page" id="t-09" data-screen-label="Técnica 09 · A Sucção Guiada">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 09</span>
+    <span class="roman" style="font-size:42px;">09</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Sucção Guiada</h2>
+  <p class="lead" style="font-size:20px;">Sucção que aumenta e diminui como uma onda.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Não é sucção constante — é ondulada. Aperta, alivia, aperta. Mantém o cérebro dele engajado.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Depois de estabelecido o ritmo. Não no começo (cria dessensibilização).</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Nível 2 → Nível 3 → Nível 2 → Nível 3, mas cada mudança leva 2 segundos, não abrupta. Como se você estivesse "chupando" um doce lentamente.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">A onda de sucção é diferente da onda de pressão do Cap V. Aqui a sucção varia sozinha. O ritmo da boca fica constante.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t09_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t09_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 09</span><span class="rule"></span><span class="num">23</span></div>
+</section>
+<section class="page" id="t-10" data-screen-label="Técnica 10 · O Retorno">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 10</span>
+    <span class="roman" style="font-size:42px;">10</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">O</em> Retorno</h2>
+  <p class="lead" style="font-size:20px;">Boca sai completamente. Passa um segundo. Volta com movimento longo.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Cria uma "reset" que faz o corpo dele responder com força extra ao retorno.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Uma vez por rotina. No meio, quando ele já tá subindo mas ainda longe do fim.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Sua boca sai completamente. Você olha pra ele. Passa a mão na base. Espera dois segundos. Depois volta com um movimento longo e completo, do alto até em baixo, em ritmo lento.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Se você fez tudo certo, ele vai reagir com um som ou movimento involuntário quando você voltar. É o sinal.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t10_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t10_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 10</span><span class="rule"></span><span class="num">24</span></div>
+</section>
+<section class="page" id="t-11" data-screen-label="Técnica 11 · A Variação-Surpresa">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 11</span>
+    <span class="roman" style="font-size:42px;">11</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Variação-Surpresa</h2>
+  <p class="lead" style="font-size:20px;">Uma coisa que ele não esperava. Curta. Uma vez só.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Um beijo na coxa interna. Uma passada de língua nas bolas (se ele curte). Uma parada com sopro. Algo que ele não previu.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Uma vez por rotina, quando o padrão já tá estabelecido.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Você para o ritmo. Faz o gesto surpresa por 5-10 segundos. Depois volta ao ritmo estabelecido. Ele não sabe se vai ter de novo. É essa dúvida que faz a memória gravar.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">Não repete a mesma surpresa na mesma rotina. Guarda pra próxima. Surpresa que se repete deixa de ser surpresa.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t11_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t11_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 11</span><span class="rule"></span><span class="num">25</span></div>
+</section>
+<section class="page" id="t-12" data-screen-label="Técnica 12 · A Assinatura Final">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Técnica 12</span>
+    <span class="roman" style="font-size:42px;">12</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">A</em> Assinatura Final</h2>
+  <p class="lead" style="font-size:20px;">O gesto que só a sua boca faz. E fica.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+  <div class="times" style="margin-top:16px;">
+    <div class="time-block"><div class="t-num" style="font-size:36px;">Alvo<span class="u">o que faz</span></div><div class="t-body">Um movimento próprio que você adiciona no fim da rotina. Todas as vezes o mesmo. É o que ele associa com você.</div></div>
+    <div class="time-block mid"><div class="t-num" style="font-size:36px;">Quando<span class="u">no momento</span></div><div class="t-body">Sempre. Uma vez por sessão, no final ou no fecho.</div></div>
+    <div class="time-block full"><div class="t-num" style="font-size:36px;">Como<span class="u">passo a passo</span></div><div class="t-body">Você escolhe. Pode ser um beijo específico depois. Uma passada de língua em local específico. Uma frase-âncora dita baixinho. Uma vez você experimenta. Fica sua.</div></div>
+  </div>
+  <div class="callout warn" style="margin-top:14px;">
+    <div class="h-label" style="color:var(--rose-hot);">Dica de mestre</div>
+    <p class="body" style="margin:0;">A assinatura funciona porque é única e repetida. Se ele pensar em você, esse gesto vem junto na cabeça. É o "acorde final" da música.</p>
+  </div>
+  <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+    <label class="check" data-key="t12_fav"><span class="box"></span><span>Favorita</span></label>
+    <label class="check" data-key="t12_done"><span class="box"></span><span>Já experimentei</span></label>
+  </div>
+  <div class="pnum"><span class="mono-num">Técnica 12</span><span class="rule"></span><span class="num">26</span></div>
+</section>
+
+<!-- DIVISOR ROTINAS -->
+<section class="page material-opener" id="p-divider-routines" data-screen-label="Divisor · Rotinas">
+  <div class="mono-num" style="color: var(--gold-hi); margin-bottom: 40px;">Terceira parte</div>
+
+  <svg width="80" height="100" viewBox="0 0 80 100" fill="none" stroke="#FF3D91" stroke-width="1.4" style="filter: drop-shadow(0 0 20px rgba(255,61,145,.4));">
+    <path d="M 40 15 Q 20 30 40 50 Q 60 30 40 15"/>
+    <path d="M 40 50 Q 20 65 40 85 Q 60 65 40 50"/>
+  </svg>
+
+  <div style="margin: 40px 0;">
+    <h2 style="font-family: var(--f-display); font-weight: 500; font-size: clamp(48px, 9vw, 84px); line-height: .98; color: var(--ink); margin: 0; text-align: center; letter-spacing: -.025em;">
+      Cinco<br><em style="color: transparent; background: linear-gradient(135deg,#FF3D91,#E5478E,#A649B8); -webkit-background-clip: text; background-clip: text; font-weight: 500; font-style: italic;">rotinas</em>
+    </h2>
+  </div>
+
+  <div class="rule-orn" style="max-width: 240px;"><span class="diamond"></span></div>
+
+  <p style="font-family: var(--f-display); font-style: italic; font-size: 22px; color: var(--rose-nude); text-align: center; max-width: 480px; line-height: 1.4; letter-spacing: -.02em;">
+    Sequências prontas. Você não pensa. Só executa.
+  </p>
+</section>
+
+<!-- ROTINA 1 · 5 MIN -->
+<section class="page" id="r-01" data-screen-label="Rotina 1 · 5 min">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Rotina A</span>
+    <span class="roman" style="font-size:42px;">05</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">Rotina</em> de 5 minutos</h2>
+  <p class="lead" style="font-size:20px;">Pra dias apressados, chuveiro, momentos rápidos. Curto, mas com todo o método.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div style="margin-top:20px;">
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">0:00 · 1:00 · A Chegada Lenta (Técnica 1)</div>
+      <p class="body sm" style="margin:0;">Um minuto inteiro. Não pula. É o que muda tudo.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">1:00 · 3:00 · Ritmo médio + Anel de Saliva (Técnica 2)</div>
+      <p class="body sm" style="margin:0;">Ritmo médio (Nível 2 de pressão). Boca cheia. Mão de apoio na base em sincronia.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">3:00 · 4:00 · Escada de Pressão (Técnica 3)</div>
+      <p class="body sm" style="margin:0;">Alterna Nível 2 e 3 a cada 5 movimentos. Ritmo se mantém.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">4:00 · 4:30 · Sucção Guiada (Técnica 9)</div>
+      <p class="body sm" style="margin:0;">Onda de sucção. Aqui ele sobe forte.</p>
+    </div>
+    <div class="callout">
+      <div class="h-label" style="color:var(--rose-hot);">4:30 · 5:00 · Fecho + Assinatura</div>
+      <p class="body sm" style="margin:0;">Se ele chegou ao fim, os 30 segundos são cool-down. Se não, você sobe e beija ele. A Assinatura Final (Técnica 12) vem aqui.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px; text-align:center;">
+    <label class="check" data-key="r01_done"><span class="box"></span><span>Já usei essa rotina</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Rotina A · 5 min</span><span class="rule"></span><span class="num">27</span></div>
+</section>
+
+<!-- ROTINA 2 · 10 MIN -->
+<section class="page warm" id="r-02" data-screen-label="Rotina 2 · 10 min">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Rotina B</span>
+    <span class="roman" style="font-size:42px;">10</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">Rotina</em> de 10 minutos</h2>
+  <p class="lead" style="font-size:20px;">O padrão. Tempo suficiente pra construir, sustentar e fechar bem.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div style="margin-top:20px;">
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">0:00 · 2:00 · Preparação e Chegada Lenta</div>
+      <p class="body sm" style="margin:0;">Beijo na coxa. Beijo na barriga. Depois Técnica 1 completa. Sem correr.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">2:00 · 4:00 · Ritmo estabelecido</div>
+      <p class="body sm" style="margin:0;">Anel de Saliva (T2). Ritmo médio, Nível 2. Mão em sincronia. Estabelece.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">4:00 · 5:00 · Escada de Pressão (T3)</div>
+      <p class="body sm" style="margin:0;">Alterna 2 e 3. Fim desse minuto: uma Pausa Suspensa (T8).</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">5:00 · 6:30 · Beijo Profundo + Língua-Chama</div>
+      <p class="body sm" style="margin:0;">T4 três vezes. Depois T5 (língua-chama) por 30 segundos. Volta ao ritmo médio.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">6:30 · 7:00 · Variação-Surpresa (T11)</div>
+      <p class="body sm" style="margin:0;">Uma surpresa curta. Aqui você escolhe o que fazer. Não repete se já fez antes.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">7:00 · 9:00 · Sucção Guiada crescente</div>
+      <p class="body sm" style="margin:0;">T9 com onda de intensidade. Aqui ele sobe forte. Lê o corpo.</p>
+    </div>
+    <div class="callout">
+      <div class="h-label" style="color:var(--rose-hot);">9:00 · 10:00 · Fecho + Assinatura</div>
+      <p class="body sm" style="margin:0;">Cool-down completo. Corpo colado. Assinatura Final. Frase-âncora.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px; text-align:center;">
+    <label class="check" data-key="r02_done"><span class="box"></span><span>Já usei essa rotina</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Rotina B · 10 min</span><span class="rule"></span><span class="num">28</span></div>
+</section>
+
+<!-- ROTINA 3 · 15 MIN -->
+<section class="page rose" id="r-03" data-screen-label="Rotina 3 · 15 min">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow hot">Rotina C</span>
+    <span class="roman" style="font-size:42px;">15</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">Rotina</em> de 15 minutos</h2>
+  <p class="lead" style="font-size:20px;">Pra fins de semana, aniversário do casal, momentos com tempo real. Aqui você faz arte.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div style="margin-top:20px;">
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">0:00 · 3:00 · Ritual de entrada</div>
+      <p class="body sm" style="margin:0;">Cinco minutos acima da cintura (do Cap 1). Depois desce devagar. Beijo em cada ponto. Chegada Lenta prolongada.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">3:00 · 6:00 · Camada base</div>
+      <p class="body sm" style="margin:0;">T2, T3, T6 combinadas. Estabelece um ritmo tão constante que ele "flutua" nele.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">6:00 · 6:30 · Retorno (T10)</div>
+      <p class="body sm" style="margin:0;">A boca sai. Um segundo de pausa. Volta com movimento longo. Ele reseta.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">6:30 · 10:00 · Camada 2</div>
+      <p class="body sm" style="margin:0;">Beijo Profundo + Língua-Chama + Ritmo Duplo. Aqui você mostra que domina o método.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">10:00 · 12:00 · Escalada final</div>
+      <p class="body sm" style="margin:0;">Sucção Guiada com onda crescente. Ele sobe. Lê. Se ele chega antes, você sobe cedo. Se aguenta, mantém.</p>
+    </div>
+    <div class="callout">
+      <div class="h-label" style="color:var(--rose-hot);">12:00 · 15:00 · Fecho completo</div>
+      <p class="body sm" style="margin:0;">Três minutos inteiros de cool-down. Corpo colado. Mão passando. Assinatura Final. Silêncio.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px; text-align:center;">
+    <label class="check" data-key="r03_done"><span class="box"></span><span>Já usei essa rotina</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Rotina C · 15 min</span><span class="rule"></span><span class="num">29</span></div>
+</section>
+
+<!-- ROTINA 4 · MANHÃ -->
+<section class="page" id="r-04" data-screen-label="Rotina 4 · Manhã">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow">Rotina D</span>
+    <span class="roman" style="font-size:42px;">AM</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">Rotina</em> de manhã</h2>
+  <p class="lead" style="font-size:20px;">Sonolenta. Sem apuro. Curta e específica. Pra manhãs em que os dois têm 15 minutos antes de acordar de verdade.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div style="margin-top:20px;">
+    <p class="body">De manhã o corpo tá diferente. Testosterona alta, ritmo cardíaco baixo, ele mesmo devagar. A rotina tem que respeitar isso.</p>
+
+    <div class="callout" style="margin-top:16px;margin-bottom:10px;">
+      <div class="h-label">O clima</div>
+      <p class="body sm" style="margin:0;">Sem falar. Sem luz forte. Ele deitado. Você aparece devagar. Mão primeiro. Boca só depois de dois minutos de mão.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">A técnica</div>
+      <p class="body sm" style="margin:0;">Ritmo lento (T1) + Anel de Saliva (T2) + Mão de Apoio (T6). Só três técnicas. Nada complicado. De manhã, simplicidade ganha.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">O tempo</div>
+      <p class="body sm" style="margin:0;">De manhã ele responde mais rápido. Não force pra prolongar. Se ele chega em cinco minutos, cinco minutos foi.</p>
+    </div>
+    <div class="callout">
+      <div class="h-label" style="color:var(--rose-hot);">O fecho</div>
+      <p class="body sm" style="margin:0;">Não sai da cama. Fica em cima. Cobra dele um beijo. Dorme mais dez minutos abraçada. Esse é o fecho da manhã.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px; text-align:center;">
+    <label class="check" data-key="r04_done"><span class="box"></span><span>Já usei essa rotina</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Rotina D · Manhã</span><span class="rule"></span><span class="num">30</span></div>
+</section>
+
+<!-- ROTINA 5 · ANIVERSÁRIO -->
+<section class="page hot" id="r-05" data-screen-label="Rotina 5 · Aniversário">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+    <span class="eyebrow hot">Rotina E</span>
+    <span class="roman" style="font-size:42px;">◆</span>
+  </div>
+  <h2 class="h-display" style="margin-top:8px;font-size:44px;"><em class="italic">Rotina</em> de aniversário</h2>
+  <p class="lead" style="font-size:20px;">Uma vez por ano. Momento marcado. Aqui você usa o manual inteiro.</p>
+  <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+  <div style="margin-top:20px;">
+    <p class="body">Aniversário de namoro, dele, seu, qualquer marco. Uma rotina que existe uma vez por ano — e por isso pode ser mais elaborada.</p>
+
+    <div class="callout" style="margin-top:16px;margin-bottom:10px;">
+      <div class="h-label">Preparação de verdade</div>
+      <p class="body sm" style="margin:0;">Banho antes. Perfume. Iluminação. Um copo de vinho. Ele já sabe que hoje é diferente antes de qualquer coisa acontecer. A antecipação começa horas antes.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">A entrada</div>
+      <p class="body sm" style="margin:0;">Você tira a roupa dele. Não ele. Beija cada parte enquanto tira. Isso dura 10 minutos. Ele nem chegou a nada e já tá diferente.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">A rotina C completa (15 min)</div>
+      <p class="body sm" style="margin:0;">Você faz a Rotina de 15 minutos inteira. Sem pular nada. Com atenção redobrada em cada técnica.</p>
+    </div>
+    <div class="callout" style="margin-bottom:10px;">
+      <div class="h-label">O bônus</div>
+      <p class="body sm" style="margin:0;">Depois do fim, cinco minutos de silêncio. Depois você deita ao lado, olha ele, e fala uma coisa que só se fala uma vez por ano. Uma frase real. Não performativa. Uma que ele vai lembrar.</p>
+    </div>
+    <div class="callout">
+      <div class="h-label" style="color:var(--rose-hot);">O que faz a diferença</div>
+      <p class="body sm" style="margin:0;">Não é a técnica. É o <em>ritual</em>. É o fato dele saber que hoje é o dia. Anos depois ele vai lembrar dessa noite específica — não das outras cinquenta.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px; text-align:center;">
+    <label class="check" data-key="r05_done"><span class="box"></span><span>Já usei essa rotina</span></label>
+  </div>
+
+  <div class="pnum"><span class="mono-num">Rotina E · Aniversário</span><span class="rule"></span><span class="num">31</span></div>
+</section>
+
+
+<!-- TRACKER -->
+<section class="page warm" id="p-tracker" data-screen-label="Tracker de técnicas">
+  <div style="padding-top:30px;">
+    <span class="eyebrow">Ferramenta</span>
+    <h2 class="h-display" style="margin-top:20px;"><em class="italic">Tracker</em> de técnicas</h2>
+    <p class="lead" style="font-size:22px;">Marca as que você já experimentou. Marca as suas favoritas. Assim você sabe o que testou e o que ainda falta.</p>
+    <div class="rule-orn" style="max-width:180px;margin-left:0;"><span class="diamond"></span></div>
+
+    <table class="tracker-table" style="margin-top:16px;">
+      <thead>
+        <tr><th>#</th><th>Técnica</th><th style="width:60px;text-align:center;">Feita</th><th style="width:70px;text-align:center;">Favorita</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="d-num">01</td><td class="d-name">A Chegada Lenta</td><td style="text-align:center;"><label class="check" data-key="tr_t01_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t01_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">02</td><td class="d-name">O Anel de Saliva</td><td style="text-align:center;"><label class="check" data-key="tr_t02_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t02_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">03</td><td class="d-name">A Escada de Pressão</td><td style="text-align:center;"><label class="check" data-key="tr_t03_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t03_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">04</td><td class="d-name">O Beijo Profundo</td><td style="text-align:center;"><label class="check" data-key="tr_t04_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t04_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">05</td><td class="d-name">A Língua-Chama</td><td style="text-align:center;"><label class="check" data-key="tr_t05_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t05_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">06</td><td class="d-name">A Mão de Apoio</td><td style="text-align:center;"><label class="check" data-key="tr_t06_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t06_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">07</td><td class="d-name">O Ritmo Duplo</td><td style="text-align:center;"><label class="check" data-key="tr_t07_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t07_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">08</td><td class="d-name">A Pausa Suspensa</td><td style="text-align:center;"><label class="check" data-key="tr_t08_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t08_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">09</td><td class="d-name">A Sucção Guiada</td><td style="text-align:center;"><label class="check" data-key="tr_t09_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t09_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">10</td><td class="d-name">O Retorno</td><td style="text-align:center;"><label class="check" data-key="tr_t10_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t10_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">11</td><td class="d-name">A Variação-Surpresa</td><td style="text-align:center;"><label class="check" data-key="tr_t11_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t11_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+        <tr><td class="d-num">12</td><td class="d-name">A Assinatura Final</td><td style="text-align:center;"><label class="check" data-key="tr_t12_done" style="padding:0;"><span class="box"></span></label></td><td style="text-align:center;"><label class="check" data-key="tr_t12_fav" style="padding:0;"><span class="box"></span></label></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pnum"><span class="mono-num">Ferramenta · Tracker</span><span class="rule"></span><span class="num">32</span></div>
+</section>
+
+<!-- CHECK-IN / AUTO-AVALIAÇÃO -->
+<section class="page" id="p-checkin" data-screen-label="Auto-avaliação">
+  <div style="padding-top:30px;">
+    <span class="eyebrow">Ferramenta</span>
+    <h2 class="h-display" style="margin-top:20px;">Como você tá <em class="italic">de verdade</em>.</h2>
+    <p class="body lg" style="margin-top:12px;">Nove perguntas pra você responder de tempos em tempos. Sem julgamento. Sem certo ou errado. É pra você medir onde tá — e ver que se move.</p>
+    <div class="rule-orn"><span class="diamond"></span></div>
+
+    <div class="checkin" style="margin-top:16px;">
+      <div class="q"><div class="q-text">Domino Ritmo (mantenho estável)</div><div class="scale" data-key="ci_ritmo"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Domino Pressão (calibro sem forçar)</div><div class="scale" data-key="ci_pressao"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Domino Variação (mudo uma coisa por vez)</div><div class="scale" data-key="ci_variacao"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Presença durante (não corro na cabeça)</div><div class="scale" data-key="ci_presenca"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Faço o fecho positivo (não saio correndo)</div><div class="scale" data-key="ci_fecho"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Uso as duas mãos</div><div class="scale" data-key="ci_maos"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Faço sem pressa mental</div><div class="scale" data-key="ci_pressa"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Curto o que tô fazendo (não só ele)</div><div class="scale" data-key="ci_curto"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+      <div class="q"><div class="q-text">Tenho a minha assinatura</div><div class="scale" data-key="ci_assinatura"><button class="s" data-v="1">1</button><button class="s" data-v="2">2</button><button class="s" data-v="3">3</button><button class="s" data-v="4">4</button><button class="s" data-v="5">5</button></div></div>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Ferramenta · Auto-avaliação</span><span class="rule"></span><span class="num">33</span></div>
+</section>
+
+<!-- CIERRE -->
+<section class="page rose" id="p-fin" data-screen-label="Última palavra">
+  <div style="padding-top:40px;max-width:620px;margin:0 auto;">
+    <span class="eyebrow hot">Última palavra</span>
+    <h2 class="h-display" style="margin-top:20px;">Antes de <em class="italic">fechar</em> esse livro.</h2>
+    <div class="rule-orn" style="max-width:200px;margin-left:0;"><span class="diamond"></span></div>
+
+    <p class="body lg">Você leu até aqui. <strong>(pausa longa)</strong></p>
+
+    <p class="body lg">Se você absorveu uma coisa só de tudo isso, deixa ser esta: <em>não é sobre técnica. É sobre presença</em>. Você pode saber as 12 técnicas de cor e ainda fazer boca esquecível se estiver com a cabeça em outro lugar. E você pode saber uma técnica só e fazer boca inesquecível se estiver presente.</p>
+
+    <p class="body lg">Ritmo · Pressão · Variação são as ferramentas. Mas o motor é você <em>ali</em>, com curiosidade, com prazer, com vontade. Isso é o que ele sente. Isso é o que fica.</p>
+
+    <p class="body lg">Uma última coisa. <strong>Você não é um instrumento.</strong> Nada disso serve pra você "se dar" pra ele. Serve pra vocês compartilharem uma coisa. Se em algum momento você começar a se sentir instrumento, para. Refaz o combinado. Volta quando fizer sentido. O manual respeita o seu tempo — não impõe.</p>
+
+    <p class="body lg">E outra: o que você aprende aqui é seu. Não precisa contar pra ele que leu manual. Não precisa nem falar em técnica. Faz. Ele nunca vai saber que você tá seguindo Ritmo · Pressão · Variação. Ele só vai saber que a sua boca fica na cabeça dele.</p>
+
+    <p class="body" style="margin-top:40px;text-align:right;font-family:var(--f-display);font-style:italic;font-size:22px;color:var(--rose-hot);letter-spacing:-.02em;">
+      Com todo meu carinho,<br>
+      <span style="font-size:32px;">Sofía</span>
+    </p>
+
+    <div class="rule-orn" style="margin-top:40px;"><span class="diamond"></span></div>
+    <div style="text-align:center;">
+      <span class="stamp hot">◆ Fim do Manual</span>
+    </div>
+  </div>
+  <div class="pnum"><span class="mono-num">Última palavra</span><span class="rule"></span><span class="num">34</span></div>
+</section>
+
+<!-- CONTRA-CAPA -->
+<section class="page cover" data-screen-label="Contracapa">
+  <div class="frame"></div>
+  <div style="padding-top:80px;">
+    <div class="mono-num" style="color:var(--gold-hi);">Assinatura íntima</div>
+    <div style="width:60px;height:1px;background:var(--gold);margin:20px auto;opacity:.7;"></div>
+  </div>
+  <div>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:clamp(22px,4.5vw,30px);color:var(--ink);text-align:center;max-width:560px;margin:0 auto;line-height:1.35;letter-spacing:-.025em;font-weight:400;">
+      "Não é sobre técnica.<br>É sobre <em style="color:var(--rose-hot);">presença</em>. E presença não se performa."
+    </p>
+    <div class="rule-orn" style="max-width:220px;margin:40px auto;"><span class="diamond"></span></div>
+    <p style="font-family:var(--f-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-hot);text-align:center;">
+      — Sofía
+    </p>
+  </div>
+  <div>
+    <p style="font-family:var(--f-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(251,239,234,.4);text-align:center;margin:0;">
+      Vol. Único · Edição Íntima 2026<br>Manual Aplicado · Guia Adulta
+    </p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  const LSKEY = 'boca-inesquecivel-ptbr-v1';
+  function load(){ try{ return JSON.parse(localStorage.getItem(LSKEY) || '{}'); }catch(e){ return {}; } }
+  function save(s){ try{ localStorage.setItem(LSKEY, JSON.stringify(s)); }catch(e){} }
+  const state = load();
+
+  document.querySelectorAll('.scale').forEach(scale => {
+    const key = scale.dataset.key;
+    const current = state[key];
+    scale.querySelectorAll('.s').forEach(btn => {
+      if(current && String(current) === btn.dataset.v) btn.classList.add('on');
+      btn.addEventListener('click', () => {
+        scale.querySelectorAll('.s').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        state[key] = parseInt(btn.dataset.v, 10);
+        save(state);
+      });
+    });
+  });
+
+  document.querySelectorAll('.check[data-key]').forEach(chk => {
+    const key = chk.dataset.key;
+    if(state[key]) chk.classList.add('on');
+    chk.addEventListener('click', (e) => {
+      e.preventDefault();
+      const on = !chk.classList.contains('on');
+      chk.classList.toggle('on', on);
+      state[key] = on;
+      save(state);
+    });
+  });
+
+  document.querySelectorAll('textarea[data-key], input[data-key], select[data-key]').forEach(el => {
+    const key = el.dataset.key;
+    if(state[key] !== undefined) el.value = state[key];
+    const evt = el.tagName === 'SELECT' ? 'change' : 'input';
+    el.addEventListener(evt, () => {
+      state[key] = el.value;
+      save(state);
+    });
+  });
+
+  const toc = document.getElementById('tocPanel');
+  const tocBackdrop = document.getElementById('tocBackdrop');
+  document.getElementById('tocOpen').addEventListener('click', () => {
+    toc.classList.add('open');
+    tocBackdrop.classList.add('on');
+  });
+  function closeToc(){
+    toc.classList.remove('open');
+    tocBackdrop.classList.remove('on');
+  }
+  document.getElementById('tocClose').addEventListener('click', closeToc);
+  tocBackdrop.addEventListener('click', closeToc);
+  toc.querySelectorAll('a').forEach(a => a.addEventListener('click', closeToc));
+
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const pos = document.getElementById('navPos');
+  function currentPageIdx(){
+    const scrollY = window.scrollY;
+    const viewportMid = scrollY + window.innerHeight / 2;
+    for(let i = pages.length - 1; i >= 0; i--){
+      const rect = pages[i].getBoundingClientRect();
+      const top = rect.top + scrollY;
+      if(top < viewportMid) return i;
+    }
+    return 0;
+  }
+  function updatePos(){
+    const idx = currentPageIdx();
+    pos.textContent = (idx + 1) + ' · ' + pages.length;
+    try{ localStorage.setItem(LSKEY + ':pos', idx); }catch(e){}
+  }
+  document.getElementById('navPrev').addEventListener('click', () => {
+    const idx = currentPageIdx();
+    if(idx > 0) pages[idx - 1].scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  document.getElementById('navNext').addEventListener('click', () => {
+    const idx = currentPageIdx();
+    if(idx < pages.length - 1) pages[idx + 1].scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  window.addEventListener('scroll', () => {
+    clearTimeout(window._posTO);
+    window._posTO = setTimeout(updatePos, 100);
+  }, {passive: true});
+  window.addEventListener('keydown', (e) => {
+    if(e.target.matches('textarea, input, select')) return;
+    if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); document.getElementById('navPrev').click(); }
+    else if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); document.getElementById('navNext').click(); }
+  });
+  try{
+    const savedIdx = parseInt(localStorage.getItem(LSKEY + ':pos') || '0', 10);
+    if(savedIdx > 0 && pages[savedIdx]){
+      setTimeout(() => { pages[savedIdx].scrollIntoView({behavior:'instant', block:'start'}); }, 100);
+    }
+  }catch(e){}
+  updatePos();
+})();
+</script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
+
