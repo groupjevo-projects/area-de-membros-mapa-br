@@ -5,10 +5,14 @@
 const App = {
     container: null,
 
-    init() {
-        // Inicializa o controle de acesso por Token ou Storage
+    async init() {
+        // Inicializa o controle de acesso por Token, Storage e Drip 7 Dias
         if (typeof CourseData !== 'undefined' && CourseData.initAccess) {
-            CourseData.initAccess();
+            try {
+                await CourseData.initAccess();
+            } catch (e) {
+                console.warn('initAccess error:', e);
+            }
         }
 
         this.container = document.getElementById('app');

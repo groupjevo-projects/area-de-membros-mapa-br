@@ -21,17 +21,20 @@ const CoursePage = {
         const prevLesson = CourseData.getPrevLesson(courseId, lessonId);
         const nextLesson = CourseData.getNextLesson(courseId, lessonId);
         const isEbook = course.contentType === 'ebook' || !!lesson.pdfUrl;
+        const isModuleLocked = lesson.moduleId && CourseData.isModuleLocked && CourseData.isModuleLocked(lesson.moduleId);
+        const daysRemaining = CourseData.dripState?.daysRemaining || 7;
 
         // Build lesson list grouped by modules
         let lessonListHTML = '';
         if (course.modules && course.modules.length > 0) {
             course.modules.forEach(mod => {
                 const moduleLessons = course.lessons.filter(l => l.moduleId === mod.id);
+                const modLocked = CourseData.isModuleLocked && CourseData.isModuleLocked(mod.id);
                 if (moduleLessons.length > 0) {
                     lessonListHTML += `
                         <div class="module-group-header">
                             <span class="module-group-title">${mod.title}</span>
-                            <span class="module-group-tag">${mod.tag}</span>
+                            <span class="module-group-tag ${modLocked ? 'tag-locked' : ''}">${modLocked ? '⏳ Drip 7 Dias' : mod.tag}</span>
                         </div>
                     `;
                     moduleLessons.forEach(l => {
@@ -40,12 +43,13 @@ const CoursePage = {
                         let classes = 'lesson-item';
                         if (isActive) classes += ' active';
                         if (isDone) classes += ' completed';
+                        if (modLocked) classes += ' is-drip-locked';
 
                         lessonListHTML += `
                             <div class="${classes}" data-lesson-id="${l.id}">
-                                <div class="lesson-status">${isDone ? '✓' : l.number}</div>
+                                <div class="lesson-status">${modLocked ? '🔒' : (isDone ? '✓' : l.number)}</div>
                                 <div class="lesson-info">
-                                    <div class="lesson-number">${l.moduleName || 'Aula ' + l.number}</div>
+                                    <div class="lesson-number">${l.moduleName || 'Aula ' + l.number} ${modLocked ? '<span style="color:#fbbf24;font-size:0.7rem;">(Em 7 Dias)</span>' : ''}</div>
                                     <div class="lesson-title">${l.title}</div>
                                 </div>
                             </div>
@@ -73,27 +77,45 @@ const CoursePage = {
             }).join('');
         }
 
-        // Build player or ebook viewer
+        // Build player or ebook viewer or locked screen
         let playerHTML;
-        if (isEbook && lesson.pdfUrl) {
+        if (isModuleLocked) {
+            playerHTML = `
+                <div class="player-locked-drip" style="background: linear-gradient(135deg, rgba(20,20,30,0.95), rgba(10,10,15,0.98)); border: 1px solid rgba(245,158,11,0.3); border-radius: 16px; padding: 3rem 2rem; text-align: center; max-width: 700px; margin: 2rem auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                    <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: pulse 2s infinite;">🔒</div>
+                    <span style="display: inline-block; background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">
+                        Liberado em 7 Dias
+                    </span>
+                    <h2 style="font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 0.75rem;">${lesson.title}</h2>
+                    <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6; max-width: 520px; margin: 0 auto 1.5rem;">
+                        Este módulo avançado será liberado automaticamente <strong>7 dias após a sua compra</strong> para garantir a melhor assimilação do método na prática.
+                    </p>
+                    <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem 1.5rem; display: inline-block; margin-bottom: 1.5rem;">
+                        <span style="color: #64748b; font-size: 0.8rem; display: block; margin-bottom: 0.25rem;">Status da sua liberação:</span>
+                        <span style="color: #fbbf24; font-family: monospace; font-size: 1.1rem; font-weight: 700;">⏳ Faltam aproximadamente ${daysRemaining} dias</span>
+                    </div>
+                    <div>
+                        <a href="#course/mapa-do-prazer/1" style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 10px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 15px rgba(16,185,129,0.3);">
+                            ▶ Acessar Módulo White Liberado
+                        </a>
+                    </div>
+                </div>
+            `;
+        } else if (isEbook && lesson.pdfUrl) {
             playerHTML = `
                 <div class="ebook-viewer-container">
                     <div class="ebook-action-bar">
-                        <div class="ebook-badge">Material Digital Liberado</div>
+                        <div class="ebook-badge">📖 Material 100% Liberado</div>
                         <a href="${lesson.pdfUrl}" download="${lesson.downloadName || 'ebook.pdf'}" class="btn-download" target="_blank">
-                            <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:6px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Baixar PDF Completo
+                            📥 Baixar Manual em PDF
                         </a>
                         <a href="${lesson.pdfUrl}" target="_blank" class="btn-open-newtab">
-                            <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:6px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                            Abrir em tela cheia
+                            ↗️ Abrir em Nova Aba
                         </a>
                     </div>
                     <div class="ebook-iframe-wrapper">
-                        <iframe src="${lesson.pdfUrl}#toolbar=1" type="application/pdf" title="${lesson.title}">
-                            <p>Seu navegador não suporta visualização direta de PDFs. 
-                               <a href="${lesson.pdfUrl}" download>Clique aqui para baixar o arquivo</a>.
-                            </p>
+                        <iframe src="${lesson.pdfUrl}#toolbar=1" type="text/html" title="${lesson.title}">
+                            <p>Seu navegador não suporta iframe. <a href="${lesson.pdfUrl}" target="_blank">Clique aqui para abrir</a>.</p>
                         </iframe>
                     </div>
                 </div>
@@ -106,6 +128,7 @@ const CoursePage = {
             } else {
                 playerHTML = `
                     <div class="player-placeholder">
+                        <div class="player-placeholder-icon">🎬</div>
                         <p>${lesson.title}</p>
                         <p style="font-size: 0.75rem; opacity: 0.5;">Vídeo em breve</p>
                     </div>

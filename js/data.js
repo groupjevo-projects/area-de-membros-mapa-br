@@ -287,11 +287,34 @@ const CourseData = {
         }
     ],
 
-    // --- Gestão de Acesso (Kiwify Dynamic Access) ---
+    // --- Gestão de Acesso & Drip 7 Dias ---
+    dripState: {
+        checked: false,
+        unlockedBonus: true, // Padrão seguro de fallback legado: 100% liberado para todas as compras passadas
+        isLegacy: true,
+        remainingSeconds: 0,
+        daysRemaining: 0
+    },
 
-    initAccess() {
+    isBonusUnlocked() {
+        return this.dripState.unlockedBonus !== false;
+    },
+
+    isModuleLocked(moduleId) {
+        // Módulo Black e Bônus sujeitos a Drip de 7 dias
+        const bonusModuleIds = ['mod-black', 'mod-bonus'];
+        if (!bonusModuleIds.includes(moduleId)) {
+            return false; // Módulo White (Fundamentos) sempre liberado imediatamente!
+        }
+        return !this.isBonusUnlocked();
+    },
+
+    async initAccess() {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('access');
+        const emailParam = urlParams.get('email');
+
+        let userEmail = emailParam || localStorage.getItem('user_email_br') || '';
 
         if (token) {
             try {
@@ -301,10 +324,47 @@ const CourseData = {
 
                 if (payload && Array.isArray(payload.products)) {
                     this.setUnlockedProducts(payload.products, payload.email);
+                    if (payload.email) userEmail = payload.email;
                     console.log('Acesso liberado via token:', payload.email, payload.products);
                 }
             } catch (e) {
                 console.warn('Não foi possível ler o token de acesso, usando cache salvo.', e);
+            }
+        }
+
+        if (userEmail) {
+            localStorage.setItem('user_email_br', userEmail);
+            try {
+                const supabaseUrl = 'https://ahtvpfunglhhtfpefsyi.supabase.co';
+                const supabaseAnonKey = 'sb_publishable_MuW-XY0uxvizJ3zqtJKy5A_YMdJNrln';
+                const res = await fetch(`${supabaseUrl}/rest/v1/rpc/check_member_access`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': supabaseAnonKey,
+                        'Authorization': `Bearer ${supabaseAnonKey}`
+                    },
+                    body: JSON.stringify({
+                        p_email: userEmail,
+                        p_funnel_id: 'mapa-prazer-masculino-br'
+                    })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && typeof data.unlocked_bonus === 'boolean') {
+                        this.dripState = {
+                            checked: true,
+                            unlockedBonus: data.unlocked_bonus,
+                            isLegacy: data.is_legacy,
+                            remainingSeconds: data.remaining_seconds || 0,
+                            daysRemaining: data.days_remaining || 0
+                        };
+                        console.log('Status Drip Brasil verificado:', this.dripState);
+                    }
+                }
+            } catch (err) {
+                console.warn('Supabase Drip Check fallback to unlocked legacy:', err);
             }
         }
     },
